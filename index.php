@@ -1,29 +1,28 @@
 <?php session_start(); 
 date_default_timezone_set('UTC');
 
-$connection = new mysqli("localhost", "avengers_USER", "COP4656");
-//$connection = new mysqli("localhost", "root", "z");
 
-if ($connection->connect_errno)
-{
-  printf("Connect failed: %s\n", $connection->connect_error);
-  exit();
-}
-
-if ($connection->select_db("avengers_DB") === false)
-  die("Could not select requested database");
 
 
 // if username and password were submitted, check them
 if (isset($_POST["username"]) && isset($_POST["password"]))
 {
+  $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+  //$connection = new mysqli("localhost", "root", "z");
+  
+  if ($connection->connect_errno)
+  {
+    printf("Connect failed: %s\n", $connection->connect_error);
+    exit();
+  }
+  
+  if ($connection->select_db("avengers_DB") === false)
+    die("Could not select requested database");
   // prepare SQL
   $query = sprintf("SELECT 1 FROM users WHERE username='%s' AND password='%s';", 
               $connection->real_escape_string($_POST["username"]),
               MD5($connection->real_escape_string($_POST["password"])));
 
-
-  
   if ($stmt = $connection->prepare($query))
   {
     if(!$stmt->execute())
