@@ -2,6 +2,7 @@
 date_default_timezone_set('UTC');
 
 $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+//$connection = new mysqli("localhost", "root", "z");
 
 if ($connection->connect_errno)
 {
@@ -19,7 +20,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
   // prepare SQL
   $query = sprintf("SELECT 1 FROM users WHERE username='%s' AND password='%s';", 
               $connection->real_escape_string($_POST["username"]),
-              $connection->real_escape_string($_POST["password"]));
+              MD5($connection->real_escape_string($_POST["password"])));
 
 
   
