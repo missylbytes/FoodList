@@ -1,7 +1,8 @@
-<?
-session_start();  // enables sessions
+<?php session_start();
+date_default_timezone_set('UTC');
 
-$connection = new mysqli("localhost", "root", "z");
+$connection = new mysqli("localhost", "avengers_USER", "COP4656");
+
 
 if ($connection->connect_errno)
 {
@@ -9,7 +10,7 @@ if ($connection->connect_errno)
   exit();
 }
 
-if ($connection->select_db("login") === false)
+if ($connection->select_db("avengers_DB") === false)
   die("Could not select requested database");
 
 // if username was submitted
@@ -35,16 +36,11 @@ if (isset($_POST["username"]))
     {
   
       $stmt->close();
-      
-      // remember that user's logged in
-      $_SESSION["authenticated"] = true;
-      $_SESSION["username"] = $_POST["username"];
-      //echo $_SESSION["username"];
-      
-      $insertStmt = sprintf("INSERT INTO `login`.`users` (`username`, `password`, `id`, `firstName`, `lastName`, `street`, `city`, `state`, `phone`, `gender`) 
+            
+      $insertStmt = sprintf("INSERT INTO `avengers_DB`.`users` (`username`, `password`, `id`, `firstName`, `lastName`, `street`, `city`, `state`, `phone`, `gender`) 
                 VALUES ('%s', '%s', NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s')",  
                 $connection->real_escape_string($_POST["username"]),
-                MD5($connection->real_escape_string($_POST["password"])),
+                $connection->real_escape_string($_POST["password"]),
                 $connection->real_escape_string($_POST["firstName"]),
                 $connection->real_escape_string($_POST["lastName"]),
                 $connection->real_escape_string($_POST["street"]),
@@ -61,24 +57,24 @@ if (isset($_POST["username"]))
             print("Transaction commit failed\n");
             exit();
         }
-        else
-           echo "Transaction committed.";
-      
+              
       }
       else
       {
-        echo "failed here.";
+        echo "Problem with connection query.";
+        echo $result;
+        exit;
       }
 
       $connection->close();
       
       // save username in cookie for a week
-      setcookie("username", $_POST["username"], time() * 7 * 24 * 60 * 60);
+      setcookie("username", $_POST["username"], time() + 7 * 24 * 60 * 60);
     
       // redirect user to home page, using absolute path
       $host= $_SERVER["HTTP_HOST"];
       $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-      header("Location: http://$host$path/home.php");
+      header("Location: http://$host$path/index.php");
       exit;
 
     }  

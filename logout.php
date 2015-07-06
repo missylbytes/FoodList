@@ -1,11 +1,13 @@
-﻿<?php
-session_start();
+<?php session_start();
+date_default_timezone_set('UTC');
 
 // Unset all of the session variables.
 $_SESSION = array();
 
-if (ini_get("session.use_cookies")) {
+if (ini_get("session.use_cookies")) 
+{
     $params = session_get_cookie_params();
+    
     setcookie(session_name(), '', time() - 42000,
         $params["path"], $params["domain"],
         $params["secure"], $params["httponly"]
@@ -31,13 +33,12 @@ session_destroy();
     <br />
     <a href="logout.php">log out</a>
     <? } else { ?>
-    You have successfully logged out!!
+    You have successfully logged out.
     <? } ?>
   </h3>
   <br />
-  <b>Login Demos</b>
   <ul>
-    <li><a href="index.php">Log In page</a>
-</ul>
+    <li><a href="index.php">Log In</a>
+  </ul>
 </body>
 </html>

@@ -1,8 +1,7 @@
-<?
-session_start();  // enables sessions
+<?php session_start(); 
+date_default_timezone_set('UTC');
 
-
-$connection = new mysqli("localhost", "root", "z");
+$connection = new mysqli("localhost", "avengers_USER", "COP4656");
 
 if ($connection->connect_errno)
 {
@@ -10,7 +9,7 @@ if ($connection->connect_errno)
   exit();
 }
 
-if ($connection->select_db("login") === false)
+if ($connection->select_db("avengers_DB") === false)
   die("Could not select requested database");
 
 
@@ -20,7 +19,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
   // prepare SQL
   $query = sprintf("SELECT 1 FROM users WHERE username='%s' AND password='%s';", 
               $connection->real_escape_string($_POST["username"]),
-              MD5($connection->real_escape_string($_POST["password"])));
+              $connection->real_escape_string($_POST["password"]));
 
 
   
@@ -41,14 +40,13 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
     // check if a row has been found
     if ($stmt->num_rows == 1)
     {
-      echo "Number of rows == 1";
       // remember that user's logged in
       $_SESSION["authenticated"] = true;
       $_SESSION["username"] = $_POST["username"];
-      mysql_close($connection);
+      $connection->close();
       
       // save username in cookie for a week
-      setcookie("username", $_POST["username"], time() * 7 * 24 * 60 * 60);
+      setcookie("username", $_POST["username"], time() + 7 * 24 * 60 * 60);
 
       // redirect user to home page, using absolute path
       $host= $_SERVER["HTTP_HOST"];

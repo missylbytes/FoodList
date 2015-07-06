@@ -1,15 +1,6 @@
-﻿<?
-session_start();
-
-// echo $_SESSION["username"];
-// echo $_SESSION["password"];
-// echo $_SESSION["firstName"];
-// echo $_SESSION["lastName"];
-// echo $_SESSION["street"];
-// echo $_SESSION["city"];
-// echo $_SESSION["state"];
-// echo $_SESSION["phone"];
-// echo $_SESSION["age"];
+<?php 
+session_start(); 
+date_default_timezone_set('UTC');
 
 ?>
 
