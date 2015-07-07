@@ -32,10 +32,12 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
                 $connection->real_escape_string($_POST["email"]));
   
       if($result = $connection->query($insertStmt))
+      {
         if (!$connection->commit()) 
           echo "Transaction commit failed\n";
+      }
       else
-        echo "Problem with connection query." . $result;        
+        echo "Problem with connection query.";        
           
  
       setcookie("username", $_POST["username"], time() + 7 * 24 * 60 * 60);  
