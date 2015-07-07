@@ -20,6 +20,6 @@
              <a href="sellerSignUp.php"><b>SIGN-UP</b> to Sell Food</a>
              |
              <a class="loginLink" href="#">Login</a>
-        </div><!--/.navbar-collapse -->>
+        </div><!--/.navbar-collapse -->
       </div>
     </nav>
