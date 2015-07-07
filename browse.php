@@ -1,7 +1,12 @@
 <div class="container">
     <h2 class="foodPitch">Takeout Options in Your Area</h2>
     
-    <div class="browseOptions"> Collapsable Browse Options area here
+    <div class="browseOptions"> 	
+    
+    <?php if( isset($_SESSION["username"])) 
+    include 'navbarLoggedIn.php';	
+      else 
+    include 'navbar.php'; ?>  
     </div>
     
     <hr>

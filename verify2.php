@@ -1,5 +1,5 @@
 <?php 
-date_default_timezone_set('EST');
+date_default_timezone_set('UTC');
 
 if (count ($_POST) > 0)
 {  

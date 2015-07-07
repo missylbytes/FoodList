@@ -1,4 +1,7 @@
-<?php include 'header.php' ?>
+<?php 
+date_default_timezone_set('UTC');
+include 'header.php' 
+?>
 
 
 <div id="mainContainer">

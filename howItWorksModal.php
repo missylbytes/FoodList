@@ -21,7 +21,7 @@
                 </div>
                 <div class="modal-footer">
                  <p class="text-warning"><small>If you're an artist, <b style="margin-right:10px;">Sign Up!</b>    If you're a business owner, <b>Browse for Art</b> to hang!</small></p>
-                    <a href="http://www.artifymybiz.com"><button type="button" class="btn btn-default">Browse for Art</button></a>
+                    <a href="#"><button type="button" class="btn btn-default">Browse for Art</button></a>
                     <a href="artistSignUp.php"><button type="button" class="btn btn-primary" style="margin-left:20px">Artist Sign Up</button></a>
                 </div>
             </div>

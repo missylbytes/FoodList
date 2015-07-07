@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-<?php include 'verifyLogin.php'?>
 <div class="loginDiv">
   <form action="<? $_SERVER['PHP_SELF'] ?>" method="POST">
     <button type="button" class="close loginDivClose" data-dismiss="modal" aria-hidden="true">×</button>

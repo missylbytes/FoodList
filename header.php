@@ -1,3 +1,8 @@
+<?php 
+session_start();
+date_default_timezone_set('UTC');
+include 'verifyLogin.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,18 +21,13 @@
   </head>
 
 <body>
-<?php include 'loginModal.php' ?>
-
 <!-- the navbar changes if user is logged in -->
-<?php 
-	if( !isset($_SESSION["username"])) {
-			include 'navbar.php';
-	}
-	else {
-			include 'navbarLoggedIn.php';
-		}
+<?php
+  include 'loginModal.php';
+	if( isset($_SESSION["username"])) 
+    include 'navbarLoggedIn.php';	
+	else 
+    include 'navbar.php';
 ?>
-
-
 <?php include 'howItWorksModal.php' ?>
 <?php include 'reserveMealModal.php' ?>
