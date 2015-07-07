@@ -20,7 +20,7 @@
 
 <!-- the navbar changes if user is logged in -->
 <?php 
-	if(true) {
+	if( !isset($_SESSION["username"])) {
 			include 'navbar.php';
 	}
 	else {

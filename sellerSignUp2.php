@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php include 'verify2.php'?>
 
 <h2 class="signupSeller">Seller Registration!</h2>

@@ -16,10 +16,10 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
              <div class="form-group">
-             <a class="howitworks">My Meals</a> |
-             <a href="sellerSignUp.php">My Account</a>
-             |
-             <a class="loginLink" href="#">Logout</a>
-        </div><!--/.navbar-collapse -->
+              <a class="howitworks">My Meals</a> |
+              <a href="MyAccount.php">My Account</a> |
+              <a class="loginLink" href="logout.php">Logout</a> | 
+              Welcome, <?php echo $_SESSION["username"]; ?>
+            </div><!--/.navbar-collapse -->
       </div>
     </nav>
