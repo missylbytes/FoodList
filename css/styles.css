@@ -1,0 +1,417 @@
+.top_wrap {
+	border-bottom: 1px black solid;
+	background: #CCC;
+}
+
+body {
+background: #C2FFEB;
+}
+
+.price {
+height:50px;
+width:50px;
+background-color:green;
+border:1px #333 solid;
+color: #FFF;
+font-family:  'Arvo', serif;
+-webkit-border-radius: 50px;
+-moz-border-radius: 50px;
+border-radius: 50px;
+padding-top:4px;
+padding-left:4px;
+display:block;
+position: absolute;
+top: 5%;
+left:5%;
+font-size: 30px;
+}
+
+
+.distanceAway {
+
+height:30px;
+width:150px;
+background-color: rgba(255, 255, 255, 0.5);
+border:1px #BBB solid;
+
+font-family:  'Arvo', serif;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+display:block;
+position: absolute;
+top: 8%;
+right:7%;
+font-size: 15px;
+color: #444;
+padding-left:30px;
+padding-top:5px;
+
+}
+
+.distanceAway i {
+color:#444;
+}
+
+
+.mealName {
+font-size:20px;
+margin:5px auto;
+display:block;
+text-align:center;
+width:100%;
+}
+
+
+.keywords, .ingredients{
+margin:5px auto;
+display:block;
+width:100%;
+text-align: justify;
+}
+
+.mealInfo {
+width:100%;
+}
+
+.navbar-brand {
+color:#9d177c;
+}
+
+div.distanceAway .glyphicon-map-marker {
+font-size:20px;
+position: absolute;
+top:4px;
+left: 3px;
+}
+
+
+
+#howItWorksModal .modal-dialog {
+margin-top:30px;
+}
+
+#artistSignUp {
+display:none;
+}
+
+.jumbotron {
+background-color: white;
+color:white;
+background-image:url("../images/art-img.jpg");
+height:400px;
+text-shadow: 5px 5px 20px #000;
+-webkit-box-shadow: #000 0 0 20px;
+-moz-box-shadow: #000 0 0 20px;
+box-shadow: #000 0 0 20px;
+margin-top: -40px;
+}
+
+.jumbotron h1 {
+font-size:55px;
+text-shadow: 4px 2px 3px #000;
+letter-spacing: .05em;
+font-family: 'Jura', sans-serif;
+margin-top: 40px;
+
+}
+
+#mainContainer {
+margin-top:40px;
+}
+
+.navbar-inverse {
+background-color: #999;
+border-bottom: #666 1px solid;
+-webkit-box-shadow: #000 0 0 10px;
+-moz-box-shadow: #000 0 0 10px;
+box-shadow: #000 0 0 10px;
+}
+
+h3.homePitch {
+text-align:center;
+color:#333;
+font-size: 25px;
+font-family: 'Jura', sans-serif;
+margin-top:0px;
+}
+
+.line {
+border-top: #333 solid 1px;
+display:block;
+width: 72%;
+margin-left: 14%;
+margin-top:10px;
+}
+
+.foodPitch {
+margin-top:20px;
+text-align:center;
+color:#9d177c;
+font-size: 35px; 
+font-family: 'Arvo', serif;
+}
+
+.galleryBrowse btn {
+margin: auto 0;
+}
+.galleryBrowse {
+display:block;
+}
+
+.signupSeller {
+margin-top:80px;
+margin-bottom:-15px;
+text-align:center;
+color:#9d177c;
+font-size: 35px; 
+font-family: 'Arvo', serif;
+}
+
+.modal-body h4 {
+color:#9d177c;
+margin-bottom:0; 
+font-size: 20px;
+font-family: 'Arvo', serif;
+}
+
+.modal-body p {
+margin-bottom:35px; 
+line-height:1em;
+font-size:16px;
+text-align: justify;
+}
+
+.galleryImage .form-control {
+height:50px;
+width:220px;
+margin: 0 auto;
+
+}
+.navbar {
+font-size: 20px;
+color:#666;
+}
+
+#createGallery {
+display:none;
+}
+
+.navbar a {
+color: #9d177c;
+font-size: 20px;
+margin: 0px 20px;
+font-family: 'Jura', sans-serif;
+
+}
+
+.loginDiv {
+background: #fff;
+height: 200px;
+padding:10px 20px;
+width:200px;
+position:absolute;
+display:none;
+z-index:1031;
+top:55px;
+right:5px;
+border: 1px solid #d8d8d8;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: #666 0 0 10px;
+-moz-box-shadow: #666 0 0 10px;
+box-shadow: #666 0 0 10px;
+font-family: 'Arvo', serif;
+}
+
+.loginDivClose {
+display:block;
+margin-right: -8px;
+margin-top: -7px;
+margin-bottom:5px;
+text-align:right;
+cursor:pointer;
+}
+
+body {
+background-color:#EEE;
+}
+
+.gallery {
+margin:15px 0 ;
+background: #fff;
+
+padding: 10px;
+border: 1px solid #d8d8d8;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+-webkit-box-shadow: #ccc 0 0 5px;
+-moz-box-shadow: #ccc 0 0 5px;
+box-shadow: #ccc 0 0 5px;
+font-family: 'Arvo', serif;
+}
+
+.gallery img {
+height: 90%;
+width: 90%;
+margin: 0 auto;
+margin-top:10px;
+display: block;
+
+}
+.sellerRating {
+margin-left:15px;
+}
+
+.browseOptions {
+background-color:#999;
+height: 50px;
+text-align: center;
+padding-top:15px;
+}
+
+.galleryBrowse br {
+line-height: 2em;
+}
+
+.left {
+margin: 10px 15px 10px 0px;
+}
+
+
+.right {
+margin: 10px 0px 10px 15px;
+}
+
+
+.sp-wrap img {
+max-height: 225px;
+margin: 0 auto;
+display: block;
+}
+
+.reserveMealDiv {
+display:block;
+padding: auto 0;
+text-align: center;
+}
+
+.reserveMealBtn {
+background-color:#337ab7;
+color:white;
+border-color:navy;
+letter-spacing: .1em;
+font-weight:500px;
+width: 60%;
+margin-top:10px;
+}
+
+.reserveMealBtn:hover {
+background-color:#2e6da4;
+color:#CCC;
+border-color:#111;
+}
+
+textarea.form-control.text {
+font-size :15px;
+}
+
+.radio label {
+margin-right:30px;
+}
+
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 30px;    
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 17px 12px;
+    pointer-events: none;
+}
+
+.usericon input{
+    padding-left:25px;
+}
+.usericon:before{
+    opacity:.8;
+    height:100%;
+    width:25px;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    position: absolute;
+    content:"\e008";
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    pointer-events: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.form-control[type="search"]::-webkit-input-placeholder:first-letter {
+    font-family:"Glyphicons Halflings";
+}
+.form-control[type="search"]:-moz-placeholder:first-letter {
+    font-family:"Glyphicons Halflings";
+}
+.form-control[type="search"]::-moz-placeholder:first-letter {
+    font-family:"Glyphicons Halflings";
+}
+.form-control[type="search"]:-ms-input-placeholder:first-letter {
+    font-family:"Glyphicons Halflings";
+}
+.nav-tabs {
+    border-bottom: 0px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: rgb(85, 85, 85);
+    cursor: default;
+    background-color: #eee;
+  border-radius:2px;
+    //border-width: 4px;
+    //border-style: solid;
+  border-color: transparent;
+    //border-bottom-color: #eee;
+    //-moz-border-bottom-colors: none;
+ 
+}
+.f{
+    padding-right: 0px;
+}
+.input-lg{padding-top:0px;}
+.panel-body{background-color:#eee;}
+.form-control {
+	border-radius:2px !important;
+	border:1px solid #e5e5e5;
+	padding:15px;
+	margin-bottom:15px;
+	//height:56px;
+}
+.btn {
+	border-radius:2px !important;
+	padding:15px;
+	font-size:16px;
+	font-weight:600;
+	//height:56px;
+}
