@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
           </button>
         
-          <a class="navbar-brand" href="#" style="color:#9d177c; font-size:25px; font-weight:600;">MealMouse</a>
+          <a class="navbar-brand" href="index.php" style="color:#9d177c; font-size:25px; font-weight:600;">MealMouse</a>
            
         </div>
        
@@ -20,6 +20,6 @@
              <a href="sellerSignUp.php"><b>SIGN-UP</b> to Sell Food</a>
              |
              <a class="loginLink" href="#">Login</a>
-        </div><!--/.navbar-collapse -->
+        </div><!--/.navbar-collapse -->>
       </div>
     </nav>
