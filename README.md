@@ -1,2 +1,0 @@
-# FoodList
-Team Avengers' Project
