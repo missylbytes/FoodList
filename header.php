@@ -41,4 +41,4 @@ include 'loginModal.php';
     
 ?>
 <?php include 'howItWorksModal.php' ?> 
- <?php //include 'reserveMealModal.php' ?>
+<!-- <?php// include 'reserveMealModal.php' ?> -->

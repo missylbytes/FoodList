@@ -1,10 +1,57 @@
 <?php 
-include 'header.php' 
+include 'header.php'; 
+
+
+
+if($_POST)
+{
+  if($_POST["mealTF"] == '' || $_POST["ingredientsTF"] == '')
+    echo "Please enter both a meal name and description.";
+  else
+  {
+    $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+    if ($connection->connect_errno)
+      echo "Connect failed: %s\n" . $connection->connect_error;    
+    
+    if ($connection->select_db("avengers_DB_mouse") === false)
+      echo "Could not select requested database";  
+            
+    //$insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`available_recipes` (`id`, `username`, `password`, `street`, `city`, `state`, `phone`, `email`) 
+    //          VALUES (NULL, '%s', '%s', '', '', '', '', '%s')",  
+    //          $connection->real_escape_string($_POST["username"]),
+    //          MD5($connection->real_escape_string($_POST["password"])),              
+    //          $connection->real_escape_string($_POST["email"]));
+
+    $insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`meal` (`id`, `mealName`, `mealText`, `price` ) 
+              VALUES (NULL, '%s', '%s', %d)",  
+              $connection->real_escape_string($_POST["mealTF"]),
+              $connection->real_escape_string($_POST["ingredientsTF"]),              
+              $connection->real_escape_string($_POST["optradio"]));
+
+    if($result = $connection->query($insertStmt))
+    {
+      if (!$connection->commit()) 
+        echo "Transaction commit failed\n";
+    }
+    else
+      echo "Problem with connection query.";        
+
+    $host= $_SERVER["HTTP_HOST"];
+      $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+      header("Location: http://$host$path/index.php");
+      $connection->close();  
+      exit;
+  }
+ 
+  
+  
+}
+
 ?>
 
 <h2 class="signupSeller">Post a meal for sale.</h2>
 
-<form action="index.php" >
+<form action="upload.php" method="POST" enctype="multipart/form-data">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
@@ -29,7 +76,7 @@ include 'header.php'
             </div>
             <div class="galleryImage">
               <label>Picture of Meal:</label>
-              <input class="form-control" type="file">
+              <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
             </div>
             <div class="form-group" style="margin-top: 10px;">
               <div class="right-inner-addon">
@@ -37,13 +84,13 @@ include 'header.php'
                 <label>Price:</label>
                 <div class="radio" style="margin-top: -5px;">
                   <label>
-                    <input type="radio" name="optradio">$3</label>
+                    <input type="radio" name="optradio" value='3'>$3</label>
                   <label>
-                    <input type="radio" name="optradio">$5</label>
+                    <input type="radio" name="optradio" value='5'>$5</label>
                   <label>
-                    <input type="radio" name="optradio">$7</label>
+                    <input type="radio" name="optradio" value='7'>$7</label>
                   <label>
-                    <input type="radio" name="optradio">$10</label>
+                    <input type="radio" name="optradio" value='10' checked="checked">$10</label>
                 </div>
               </div>
             </div>
@@ -59,139 +106,63 @@ include 'header.php'
   <div class="row">
     <div class="checkbox">
       <div class="col-md-1"></div>
+
       <div class="col-md-2">
-        <label>
-          <input type="checkbox">
-          Ready-to-Eat
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Cold or Frozen
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          American (Traditional)
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Barbeque
-    		
-        </label>
-        <br>
+        <input type="checkbox" name="readyToEat" value="readyToEat">
+        Ready-to-Eat<br>
+        <input type="checkbox" name="readyToEat" value="frozen">
+        Cold or Frozen<br>
+        <input type="checkbox" name="readyToEat" value="american">
+        American (Traditional)<br>
+        <input type="checkbox" name="readyToEat" value="bbq">
+        Barbeque<br>
       </div>
+
       <div class="col-md-2">
-        <label>
-          <input type="checkbox">
-          Asian
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Indian
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Curry
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Middle Eastern
-    		
-        </label>
-        <br>
+        <input type="checkbox" name="readyToEat" value="asian">
+        Asian<br>
+        <input type="checkbox" name="readyToEat" value="indian">
+        Indian<br>
+        <input type="checkbox" name="readyToEat" value="Curry">
+        Curry<br>
+        <input type="checkbox" name="readyToEat" value="middleEastern">
+        Middle Eastern<br>
       </div>
+
       <div class="col-md-2">
-        <label>
-          <input type="checkbox">
-          French
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Latin / Mexican
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Italian
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Sandwich
-    		
-        </label>
-        <br>
+        <input type="checkbox" name="readyToEat" value="french">
+        French<br>
+        <input type="checkbox" name="readyToEat" value="mexican">
+        Latin / Mexican<br>
+        <input type="checkbox" name="readyToEat" value="italian">
+        Italian<br>
+        <input type="checkbox" name="readyToEat" value="sandwich">
+        Sandwich<br>
       </div>
+
       <div class="col-md-2">
-        <label>
-          <input type="checkbox">
-          Vegetarian
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Vegan
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Gluten-Free
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Organic
-    		
-        </label>
-        <br>
+        <input type="checkbox" name="readyToEat" value="vegetarian">
+        Vegetarian<br>
+        <input type="checkbox" name="readyToEat" value="glutenFree">
+        Gluten-Free<br>
+        <input type="checkbox" name="readyToEat" value="organic">
+        Organic<br>
+        <input type="checkbox" name="readyToEat" value="vegan">
+        Vegan<br>
       </div>
+
       <div class="col-md-2">
-        <label>
-          <input type="checkbox">
-          Baked Goods
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Dessert
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Salad
-    		
-        </label>
-        <br>
-        <label>
-          <input type="checkbox">
-          Soup
-    		
-        </label>
-        <br>
+        <input type="checkbox" name="readyToEat" value="baked">
+        Baked Goods<br>
+        <input type="checkbox" name="readyToEat" value="dessert">
+        Dessert<br>
+        <input type="checkbox" name="readyToEat" value="salad">
+        Salad<br>
+        <input type="checkbox" name="readyToEat" value="soup">
+        Soup<br>
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-md-1"></div>
