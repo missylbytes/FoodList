@@ -4,7 +4,6 @@
 <div id="mainContainer">
 	<div id="homeScreen">
 		
-	<!--<?php include 'slider.php' ?> -->
 		<?php include 'browse.php' ?>
 		
 	</div>

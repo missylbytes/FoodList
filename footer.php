@@ -5,28 +5,28 @@
 
 
 
+<!-- Placed at the end of the document so the pages load faster -->
 
     <!-- Bootstrap core JavaScript-->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
- 
+    
+     <!-- Google API server jQuery-->
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+	
+	
+	 <!-- jQuery API server jQuery-->
+	 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+ 	 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
 
         
         
     <!-- My JS Funcs-->
  	<script type="text/javascript">
  	
- 	
- 	var distance = $('.browseOptions').offset().top,
-    $window = $(window);
 
-	$window.scroll(function() {
-    if ( $window.scrollTop() >= distance ) {
-         $(".navbar-container").slideUp();
-         $(".browseOptions").appendTo(".navbar");
-          }
-    });
+ 
+ 
  	
  	$(".loginLink").click(function() {
   		$(".loginDiv").slideDown('slow');
