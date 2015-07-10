@@ -7,7 +7,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
   if ($connection->connect_errno)
     die("Connect failed: %s\n" . $connection->connect_error);    
   
-  if ($connection->select_db("avengers_DB") === false)
+  if ($connection->select_db("avengers_DB_mouse") === false)
     die("Could not select requested database");
   
   $query = sprintf("SELECT 1 FROM users WHERE username='%s' AND password='%s'", 
@@ -34,8 +34,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
         $connection->close();  
         exit();
     }
-    else
-      echo "<font color='red'>Invalid User Name and/or Password! </font>";      
+    //else
+      //echo "<font color='red'>Invalid User Name and/or Password! </font>";      
   }  
 } 
 ?>

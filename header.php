@@ -25,7 +25,7 @@ include 'loginModal.php';
   	 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Jura:600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Jura:600' rel='stylesheet' type='text/css'> 
 	
    
   </head>
@@ -34,10 +34,11 @@ include 'loginModal.php';
 <!-- the navbar changes if user is logged in -->
 <?php
   
-	if( isset($_SESSION["username"])) 
-    include 'navbarLoggedIn.php';	
-	else 
-    include 'navbar.php';
+  //if( isset($_SESSION["username"])) 
+  //  include 'navbarLoggedIn.php';	
+  //else 
+  //  include 'navbar.php';
+    
 ?>
-<?php include 'howItWorksModal.php' ?>
-<?php include 'reserveMealModal.php' ?>
+<?php include 'howItWorksModal.php' ?> 
+ <?php //include 'reserveMealModal.php' ?>

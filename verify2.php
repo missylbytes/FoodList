@@ -3,11 +3,12 @@ date_default_timezone_set('UTC');
 
 if ( isset($_POST["submit"]))
 {  
+  
   $connection = new mysqli("localhost", "avengers_USER", "COP4656");
   if ($connection->connect_errno)
     echo "Connect failed: %s\n" . $connection->connect_error;    
   
-  if ($connection->select_db("avengers_DB") === false)
+  if ($connection->select_db("avengers_DB_mouse") === false)
     echo "Could not select requested database";
   
   $Aquery = sprintf("UPDATE users SET street='%s', city='%s', state='%s' WHERE username='%s'", 
@@ -19,7 +20,7 @@ if ( isset($_POST["submit"]))
   
   if (!$connection->commit()) 
     echo "Transaction commit failed";
-            
+  
   $connection->close();        
   // redirect user to home page, using absolute path
   $host= $_SERVER["HTTP_HOST"];
@@ -27,5 +28,8 @@ if ( isset($_POST["submit"]))
   header("Location: http://$host$path/MyAccount.php");
   exit;
 } 
+  
+
+
 
 

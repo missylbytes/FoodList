@@ -7,7 +7,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
   if ($connection->connect_errno)
     echo "Connect failed: %s\n" . $connection->connect_error;    
   
-  if ($connection->select_db("avengers_DB") === false)
+  if ($connection->select_db("avengers_DB_mouse") === false)
     echo "Could not select requested database";
   
   $query = sprintf("SELECT 1 FROM users WHERE username='%s'", $connection->real_escape_string($_POST["username"]));
@@ -24,8 +24,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
     {  
       $stmt->close();
             
-      $insertStmt = sprintf("INSERT INTO `avengers_DB`.`users` (`username`, `password`, `email`, `id`, `street`, `city`, `state`) 
-                VALUES ('%s', '%s', '%s', NULL, '', '', '')",  
+      $insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`users` (`id`, `username`, `password`, `street`, `city`, `state`, `phone`, `email`) 
+                VALUES (NULL, '%s', '%s', '', '', '', '', '%s')",  
                 $connection->real_escape_string($_POST["username"]),
                 MD5($connection->real_escape_string($_POST["password"])),              
                 $connection->real_escape_string($_POST["email"]));

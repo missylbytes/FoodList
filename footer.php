@@ -49,7 +49,18 @@
     </script>
     
     
-
+<a href="index.php">MealMouse Home | </a>
+<? if( isset($_SESSION["username"])) 
+   {
+   echo "<a href='myMeals.php'> My Meals | </a>";
+   echo "<a href='myAccount.php'> My Account | </a>";
+   echo "<a href='logout.php'> Logout |</a>";
+   echo " Welcome ". $_SESSION["username"];
+   } else
+   {
+   echo "<a href='sellerSignUp.php'> Sign up | </a>";
+   echo "<a class='loginLink' href='#'> Login </a>";
+   } ?>
 </body>			  
 </html>
 

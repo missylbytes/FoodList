@@ -1,4 +1,5 @@
 <?php 
+include 'header.php';
 include 'verify.php';
 ?>
 
@@ -46,6 +47,7 @@ include 'verify.php';
 </div>
 </div>
 
-<?php include 'header.php';
+<?php 
+
 include 'footer.php' ?>
  
