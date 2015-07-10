@@ -1,4 +1,6 @@
-<?php include 'header.php' ?>
+<?php 
+session_start();
+include 'header.php' ?>
 
 <h2 class="signupSeller">Post a meal for sale.</h2>
 

@@ -1,7 +1,5 @@
 <?php 
-session_start();
 date_default_timezone_set('UTC');
-include 'verifyLogin.php'
 ?>
 
 <!DOCTYPE html>

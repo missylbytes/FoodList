@@ -1,4 +1,6 @@
-<?php include 'verify2.php'?>
+<?php 
+session_start();
+include 'verify2.php'?>
  
  
  

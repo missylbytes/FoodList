@@ -1,4 +1,8 @@
-<?php include 'verify.php'?>
+<?php 
+session_start();
+
+include 'verify.php';
+?>
 
 <h2 class="signupSeller">Seller Registration!</h2>
 
@@ -43,6 +47,7 @@
 </div>		
 </div>
 </div>
-<?php include 'header.php'?>
-<?php include 'footer.php' ?>
+
+<?php include 'header.php';
+include 'footer.php' ?>
  
