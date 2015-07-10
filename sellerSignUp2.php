@@ -133,7 +133,7 @@ function codeLatLng(lat, lng) {
                     <input id = "state" class="form-control input-lg" placeholder="State" type="text" name="state">
                   </div>
                 </div>          
-                <input type="submit" class="btn btn-primary" value="Continue">
+                <input type="submit" class="btn btn-primary" value="Continue" name="submit">
               </fieldset>
             </form>
 				</div>

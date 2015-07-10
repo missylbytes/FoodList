@@ -1,7 +1,7 @@
 <?php 
 date_default_timezone_set('UTC');
 
-if (count ($_POST) > 0)
+if ( isset($_POST["submit"]))
 {  
   $connection = new mysqli("localhost", "avengers_USER", "COP4656");
   if ($connection->connect_errno)
@@ -24,6 +24,8 @@ if (count ($_POST) > 0)
   // redirect user to home page, using absolute path
   $host= $_SERVER["HTTP_HOST"];
   $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-  header("Location: http://$host$path/postMeal.php");
+  header("Location: http://$host$path/MyAccount.php");
   exit;
 } 
+
+
