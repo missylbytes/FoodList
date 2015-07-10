@@ -1,6 +1,7 @@
 <?php 
-include 'header.php';
+session_start();
 date_default_timezone_set('UTC');
+
 
 $connection = new mysqli("localhost", "avengers_USER", "COP4656");
 if ($connection->connect_errno)
@@ -22,12 +23,7 @@ else
 
 $query = sprintf("SELECT * FROM meal WHERE user_id = %d.", $_SESSION["userID"]);
 $stmt = $connection->query($query);
-
-
-
-
-
-
+include 'header.php';
 ?>
 
 <br />
@@ -35,7 +31,9 @@ $stmt = $connection->query($query);
 <br />
 <br />
 <a href="postMeal.php">Create a new meal</a>
-
+<br />
+<br />
+<br />
 <div class="browseContainer">
   <div class="row">
 <? 

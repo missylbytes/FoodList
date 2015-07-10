@@ -1,5 +1,4 @@
 <?php 
-//include 'header.php'; 
 session_start();
 date_default_timezone_set('UTC');
 
@@ -10,59 +9,63 @@ if($_POST)
     echo "Please enter both a meal name and description.";
   else
   {
+    $tmp = basename($_FILES["fileToUpload"]["name"]);
+    if ( !empty($tmp))
+    {
+      $target_dir = "uploads/";
+      $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+      
+      
+      $uploadOk = 1;
+      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-      if($check !== false) {  
+      if($check !== false)   
         $uploadOk = 1;
-      } else {
+      else 
+      {
         echo "File is not an image.";
         $uploadOk = 0;
       }
-    }
-     //Check if file already exists
-    if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
-      exit;
-      $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-      echo "Sorry, your file is too large.";
-      exit;
-      $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      exit;
-      $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) 
-    {
-      echo "Sorry, your file was not uploaded.";
-      exit;
-    } 
-    else 
-    {
-      $temp = explode(".", $_FILES["fileToUpload"]["name"]);
-      $end = end($temp);
-      $newfilename = round(microtime(true)) . '.' . $end . end($temp);
-
-      if (! move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $newfilename))
-      {
-        echo "Sorry, there was an error uploading your file.";  
+      
+      //Check if file already exists
+      if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
         exit;
+        $uploadOk = 0;
+      }
+      // Check file size
+      if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        exit;
+        $uploadOk = 0;
+      }
+      // Allow certain file formats
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+      && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        exit;
+        $uploadOk = 0;
+      }
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) 
+      {
+        echo "Sorry, your file was not uploaded.";
+        exit;
+      } 
+      else 
+      {
+        $temp = explode(".", $_FILES["fileToUpload"]["name"]);
+        $end = end($temp);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+
+        if (! move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $newfilename))
+        {
+          echo "Sorry, there was an error uploading your file.";  
+          exit;
+        }
       }
     }
-
     $connection = new mysqli("localhost", "avengers_USER", "COP4656");
     if ($connection->connect_errno)
       echo "Connect failed: %s\n" . $connection->connect_error;    
@@ -225,4 +228,5 @@ if($_POST)
 
 </form>
 
-<?php include 'footer.php' ?>
+<?php include 'header.php';
+include 'footer.php' ?>

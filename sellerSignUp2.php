@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'header.php';
 include 'verify2.php';
 ?>
