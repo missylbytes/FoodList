@@ -8,28 +8,59 @@
       <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
       <!-- Javascript -->
       <script>
+      	
          $(function() {
-            $( "#slider-3" ).slider({
+            $( "#slider-6" ).slider({
                range:true,
                min: 0,
-               max: 500,
-               values: [ 35, 200 ],
+               max: 100,
+               step:20,
+               values: [ 0 , 60 ],
+         		
+         	   
+              
                slide: function( event, ui ) {
-                  $( "#price" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                  
+                 
+                  
+                  if(ui.values[1] == 0) {
+                   $( "#slidevalue" )
+                     .val('.5' );
+                  }
+                  else if(ui.values[1] == 20) {
+                  $( "#slidevalue" )
+                     .val('1');
+                  }
+                  else if(ui.values[1] == 40)  {
+                  $( "#slidevalue" )
+                     .val('3');
+                  }
+                  else if(ui.values[1] == 60)  {
+                  $( "#slidevalue" )
+                     .val('5');
+                  }
+                  else if(ui.values[1] == 80)  {
+                  $( "#slidevalue" )
+                     .val('10');
+                  }
+                  else {
+                  $( "#slidevalue" )
+                     .val('25');
+                  }
+                  
                }
            });
-         $( "#price" ).val( "$" + $( "#slider-3" ).slider( "values", 0 ) +
-            " - $" + $( "#slider-3" ).slider( "values", 1 ) );
          });
       </script>
    </head>
    <body>
       <!-- HTML --> 
+      <div id="slider-6"></div>
+
       <p>
-         <label for="price">Price range:</label>
-         <input type="text" id="price" 
+         <label for="slidevalue">Slide:</label>
+         <input type="text" id="slidevalue" placeholder="5" 
             style="border:0; color:#b9cd6d; font-weight:bold;">
       </p>
-      <div id="slider-3"></div>
    </body>
 </html>

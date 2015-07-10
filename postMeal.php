@@ -9,34 +9,6 @@ if($_POST)
     echo "Please enter both a meal name and description.";
   else
   {
-    $connection = new mysqli("localhost", "avengers_USER", "COP4656");
-    if ($connection->connect_errno)
-      echo "Connect failed: %s\n" . $connection->connect_error;    
-    
-    if ($connection->select_db("avengers_DB_mouse") === false)
-      echo "Could not select requested database";  
-    
-    //$insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`available_recipes` (`id`, `username`, `password`, `street`, `city`, `state`, `phone`, `email`) 
-    //          VALUES (NULL, '%s', '%s', '', '', '', '', '%s')",  
-    //          $connection->real_escape_string($_POST["username"]),
-    //          MD5($connection->real_escape_string($_POST["password"])),              
-    //          $connection->real_escape_string($_POST["email"]));
-
-    $insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`meal` (`id`, `mealName`, `mealText`, `price` ) 
-              VALUES (NULL, '%s', '%s', %d)",  
-              $connection->real_escape_string($_POST["mealTF"]),
-              $connection->real_escape_string($_POST["ingredientsTF"]),              
-              $connection->real_escape_string($_POST["optradio"]));
-
-    if($result = $connection->query($insertStmt))
-    {
-      if (!$connection->commit()) 
-        echo "Transaction commit failed\n";
-    }
-    else
-      echo "Problem with connection query.";        
-
-
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -92,14 +64,36 @@ if($_POST)
       {
         echo "Sorry, there was an error uploading your file.";
       }
-      
-      
+    }
+
+    $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+    if ($connection->connect_errno)
+      echo "Connect failed: %s\n" . $connection->connect_error;    
+    
+    if ($connection->select_db("avengers_DB_mouse") === false)
+      echo "Could not select requested database";  
+
+    $query = sprintf("INSERT INTO `avengers_db_mouse`.`meal` (`id`, `mealName`, `mealText`, `price`, `location` ) 
+              VALUES (NULL, '%s', '%s', %d, '%s')",  
+              $connection->real_escape_string($_POST["mealTF"]),
+              $connection->real_escape_string($_POST["ingredientsTF"]),              
+              $connection->real_escape_string($_POST["optradio"]),
+              basename( $_FILES["fileToUpload"]["name"]));
+
+    if($result = $connection->query($query))
+    {
+      if (!$connection->commit()) 
+        echo "Transaction commit failed\n";
+    }
+    else
+      echo "Problem with connection query.";        
+
       $host= $_SERVER["HTTP_HOST"];
       $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
       header("Location: http://$host$path/index.php");
       $connection->close();  
       exit;
-    }    
+        
   }  
 }
 

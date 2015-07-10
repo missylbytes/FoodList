@@ -24,13 +24,13 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["emai
     {  
       $stmt->close();
             
-      $insertStmt = sprintf("INSERT INTO `avengers_db_mouse`.`users` (`id`, `username`, `password`, `street`, `city`, `state`, `phone`, `email`) 
+      $query = sprintf("INSERT INTO `avengers_db_mouse`.`users` (`id`, `username`, `password`, `street`, `city`, `state`, `phone`, `email`) 
                 VALUES (NULL, '%s', '%s', '', '', '', '', '%s')",  
                 $connection->real_escape_string($_POST["username"]),
                 MD5($connection->real_escape_string($_POST["password"])),              
                 $connection->real_escape_string($_POST["email"]));
   
-      if($result = $connection->query($insertStmt))
+      if($result = $connection->query($query))
       {
         if (!$connection->commit()) 
           echo "Transaction commit failed\n";

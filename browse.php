@@ -11,9 +11,11 @@
 
 	<!-- Slider Message -->
     <h2 class="foodPitch">Takeout Options Within<br>
-    	<div class="mileNum" type="text">    
-    		<?php echo'.5' ?>
-    	</div> miles
+    	<div class="mileNum">    
+        	 <input type="text" id="slidevalue" placeholder="5" 
+            	style="border:0; color:#9d177c;">
+    		 <div class="miles">miles</div>
+    	 </div>
     </h2>
     
     <!-- Mile Range Slider -->
@@ -21,7 +23,44 @@
     	<div id="slider"></div>
     	<script> 
     	
-    		$( "#slider" ).slider(); 
+    		$(function() {
+            $( "#slider" ).slider({
+               range:true,
+               min: 0,
+               max: 100,
+               step:20,
+               values: [ 0 , 60 ],
+         	
+               slide: function( event, ui ) {
+             
+                  if(ui.values[1] == 0) {
+                   $( "#slidevalue")
+                     .val('.5');
+                  }
+                  else if(ui.values[1] == 20) {
+                  $( "#slidevalue" )
+                     .val('1');
+                  }
+                  else if(ui.values[1] == 40)  {
+                  $( "#slidevalue" )
+                     .val('3');
+                  }
+                  else if(ui.values[1] == 60)  {
+                  $( "#slidevalue" )
+                     .val('5');
+                  }
+                  else if(ui.values[1] == 80)  {
+                  $( "#slidevalue" )
+                     .val('10');
+                  }
+                  else {
+                  $( "#slidevalue" )
+                     .val('25');
+                  }
+                  
+               }
+           });
+         });
     	
     	</script> 
     </div>	
@@ -29,21 +68,30 @@
     <!-- Mile Range Key -->
     <div class="row mileRangeTicks">
     	<p>|</p>
-    	<p>|</p>
-    	<p>|</p>
-    	<p>|</p>
-    	<p>|</p>
-    	<p>|</p>
+    	<p style="margin-left:53px;">|</p>
+    	<p style="margin-left:53px;">|</p>
+    	<p style="margin-left:53px;">|</p>
+    	<p style="margin-left:53px;">|</p>
+    	<p style="margin-left:44px;">|</p>
 	</div>
     <div class="row mileRange">
     	<p><b>Miles:   </b></p>
     	<p style="margin-left:10px;">.5</p>
-    	<p style="margin-left:46px;">1</p>
-    	<p style="margin-left:45px;">3</p>
-    	<p style="margin-left:44px;">5</p>
-    	<p style="margin-left:40px;">10</p>
-    	<p style="margin-left:39px;">25</p>
+    	<p style="margin-left:49px;">1</p>
+    	<p style="margin-left:48px;">3</p>
+    	<p style="margin-left:48px;">5</p>
+    	<p style="margin-left:44px;">10</p>
+    	<p style="margin-left:34px;">25</p>
 	</div>
+    	
+    
+
+    
+     <!-- John, why'd you put this here? -->
+    <?php if( isset($_SESSION["username"])) 
+    include 'navbarLoggedIn.php';	
+      else 
+    include 'navbar.php'; ?>
   
 </div>
     
