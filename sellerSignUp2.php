@@ -1,6 +1,7 @@
 <?php 
-session_start();
-include 'verify2.php'?>
+include 'header.php';
+include 'verify2.php';
+?>
  
  
  
@@ -143,7 +144,7 @@ function codeLatLng(lat, lng) {
 </div>
 </div>
 </body>
-<?php include 'header.php'?>
+
 <?php include 'footer.php' ?>
 
  

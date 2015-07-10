@@ -44,15 +44,6 @@
     	<p style="margin-left:40px;">10</p>
     	<p style="margin-left:39px;">25</p>
 	</div>
-    	
-    
-
-    
-     <!-- John, why'd you put this here? -->
-    <?php if( isset($_SESSION["username"])) 
-    include 'navbarLoggedIn.php';	
-      else 
-    include 'navbar.php'; ?>
   
 </div>
     

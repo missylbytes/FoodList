@@ -1,5 +1,7 @@
 <?php 
+session_start();
 date_default_timezone_set('UTC');
+include 'loginModal.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ date_default_timezone_set('UTC');
 <body>
 <!-- the navbar changes if user is logged in -->
 <?php
-  include 'loginModal.php';
+  
 	if( isset($_SESSION["username"])) 
     include 'navbarLoggedIn.php';	
 	else 
