@@ -4,7 +4,7 @@
           	<div class="row">
           			
           			<div class="price">
-          				$<? echo $row["id"]; ?>
+          				$<? echo $row["price"]; ?>
           			</div>
           			<img src="uploads/<? echo $row["location"]; ?>" alt="">
 

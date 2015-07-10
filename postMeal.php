@@ -1,6 +1,7 @@
 <?php 
-include 'header.php'; 
-
+//include 'header.php'; 
+session_start();
+date_default_timezone_set('UTC');
 
 
 if($_POST)
@@ -14,55 +15,51 @@ if($_POST)
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
     // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) 
-    {
+    if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-      if($check !== false) 
-      {
-        echo "File is an image - " . $check["mime"] . ".";
+      if($check !== false) {  
         $uploadOk = 1;
-      } 
-      else 
-      {
+      } else {
         echo "File is not an image.";
         $uploadOk = 0;
       }
     }
-    // Check if file already exists
-    if (file_exists($target_file)) 
-    {
+     //Check if file already exists
+    if (file_exists($target_file)) {
       echo "Sorry, file already exists.";
+      exit;
       $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) 
-    {
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
       echo "Sorry, your file is too large.";
+      exit;
       $uploadOk = 0;
     }
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) 
-    {
+    && $imageFileType != "gif" ) {
       echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+      exit;
       $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) 
     {
       echo "Sorry, your file was not uploaded.";
-      // if everything is ok, try to upload file
+      exit;
     } 
     else 
     {
-      if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) 
+      $temp = explode(".", $_FILES["fileToUpload"]["name"]);
+      $end = end($temp);
+      $newfilename = round(microtime(true)) . '.' . $end . end($temp);
+
+      if (! move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $newfilename))
       {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-      } else 
-      {
-        echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file.";  
+        exit;
       }
     }
 
@@ -73,12 +70,13 @@ if($_POST)
     if ($connection->select_db("avengers_DB_mouse") === false)
       echo "Could not select requested database";  
 
-    $query = sprintf("INSERT INTO `avengers_db_mouse`.`meal` (`id`, `mealName`, `mealText`, `price`, `location` ) 
-              VALUES (NULL, '%s', '%s', %d, '%s')",  
+    $query = sprintf("INSERT INTO `avengers_DB_mouse`.`meal` (`id`, `mealName`, `mealText`, `price`, `location`, `user_id` ) 
+              VALUES (NULL, '%s', '%s', %d, '%s', %d)",  
               $connection->real_escape_string($_POST["mealTF"]),
               $connection->real_escape_string($_POST["ingredientsTF"]),              
               $connection->real_escape_string($_POST["optradio"]),
-              basename( $_FILES["fileToUpload"]["name"]));
+              basename( $newfilename ),
+              $_SESSION["userID"]);
 
     if($result = $connection->query($query))
     {
@@ -86,14 +84,16 @@ if($_POST)
         echo "Transaction commit failed\n";
     }
     else
+    {
       echo "Problem with connection query.";        
-
-      $host= $_SERVER["HTTP_HOST"];
-      $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-      header("Location: http://$host$path/index.php");
-      $connection->close();  
       exit;
-        
+    }
+    $host= $_SERVER["HTTP_HOST"];
+    $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+    header("Location: http://$host$path/myMeals.php");
+    $connection->close();  
+    exit;
+    
   }  
 }
 

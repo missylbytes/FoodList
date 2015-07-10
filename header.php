@@ -1,7 +1,7 @@
 <?php 
 session_start();
 date_default_timezone_set('UTC');
-include 'loginModal.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -32,13 +32,3 @@ include 'loginModal.php';
 
 <body>
 <!-- the navbar changes if user is logged in -->
-<?php
-  
-  //if( isset($_SESSION["username"])) 
-  //  include 'navbarLoggedIn.php';	
-  //else 
-  //  include 'navbar.php';
-    
-?>
-<?php include 'howItWorksModal.php' ?> 
-<!-- <?php// include 'reserveMealModal.php' ?> -->

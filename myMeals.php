@@ -20,7 +20,7 @@ if($result = $connection->query($query))
 else
   echo "Problem with connection query.";   
 
-$query = sprintf("SELECT * FROM meal WHERE user_id = %d", $_SESSION["userID"]);
+$query = sprintf("SELECT * FROM meal WHERE user_id = %d.", $_SESSION["userID"]);
 $stmt = $connection->query($query);
 
 
@@ -38,11 +38,15 @@ $stmt = $connection->query($query);
 
 <div class="browseContainer">
   <div class="row">
-<? while ($row = $stmt->fetch_assoc())
-  include 'mealView.php';
+<? 
+if ($stmt)
+{
+  while ($row = $stmt->fetch_assoc())
+    include 'mealView.php';
 
-   $stmt->close();
-   $connection->close();
+  $stmt->close();
+}
+$connection->close();
 ?>
   </div>
 </div>
