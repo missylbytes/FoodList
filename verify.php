@@ -3,7 +3,7 @@ date_default_timezone_set('EST');
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"]))
 {  
-  $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+  $connection = new mysqli("localhost", "root", "z");
   if ($connection->connect_errno)
     echo "Connect failed: %s\n" . $connection->connect_error;    
   
