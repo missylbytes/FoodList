@@ -7,7 +7,62 @@
     </div>
     
  	
-<div class="container optionsContainer">
+<div class="container optionsContainer" onload = "initialize();">
+
+       <!-- Start Google Maps -->
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+      
+      <!-- Get user's lat and long -->
+      <script type="text/javascript"> 
+        var geocoder;
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+        } 
+        
+        //Get the latitude and the longitude;
+        function successFunction(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          codeLatLng(lat, lng)
+         }
+
+        function errorFunction(){
+          alert("Geocoder failed");
+        }
+
+        function initialize() {
+          geocoder = new google.maps.Geocoder();
+        }
+
+        function codeLatLng(lat, lng) {
+          var latlng = new google.maps.LatLng(lat, lng);
+          geocoder.geocode({'latLng': latlng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            console.log(results)
+            if (results[1]) {
+              //User's latlng values
+              var lat1 = results[0].geometry.location.lat();
+              var lon1 = results[0].geometry.location.lng();
+   
+              //Haven't figured out how to pass the javascript variables to php.
+              //something like this I think
+              //$.post('file.php', {variable: lat1});
+              //$.post('file.php', {variable: lat2});
+        
+              //user lat and lon for testing values came in correctly
+              //alert(lat1 + " , " + lon1);
+            } 
+            else {
+              alert("No results found");
+            }
+          } 
+          else {
+            alert("Geocoder failed due to: " + status);
+          }
+          });
+        }
+      </script> 
 
 	<!-- Slider Message -->
     <h2 class="foodPitch">Takeout Options Within<br>
@@ -60,9 +115,23 @@
                   
                }
            });
+           //http://stackoverflow.com/questions/17096883/sending-jquery-ui-slider-values-to-database
+           //except apparently this is used with submit button
+           //anywho, this *should* get called whenever the slider changes, and post the new value
+           /*
+           $.ajax({
+
+              type:"POST",
+              url:"browse.php",
+              data:"searchRadius=" + $( "#slider" ).slider( "value" ),
+              success:function(response){
+                alert(voted);
+              } 
+            })
+           */
          });
     	
-    	</script> 
+    	</script>    
     </div>	
     
     <!-- Mile Range Key -->
@@ -98,7 +167,21 @@
     
     
     <hr>
-    <div class="browseContainer">	      
+    <div class="browseContainer" onload = "initialize();">	
+
+      
+      </script>
+      <!--http://stackoverflow.com/questions/17096883/sending-jquery-ui-slider-values-to-database -->
+      <?php
+
+        //$searchRadius=0;
+
+        //if(isset($_POST['searchRadius'])){$searchRadius=$_POST['searchRadius']}
+        
+        //somehow get lat and lon
+
+        //now do MySql here
+      ?>    
     
     <!-- Example row of columns -->
      	 <div class="row">
