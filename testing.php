@@ -17,6 +17,8 @@
                step:20,
                values: [ 0 , 60 ],
          		
+            
+            
          	   
               
                slide: function( event, ui ) {
