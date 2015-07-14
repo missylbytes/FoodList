@@ -1,5 +1,5 @@
 <?php 
-//include 'header.php';
+
 include 'verify.php';
 ?>
 
@@ -48,6 +48,6 @@ include 'verify.php';
 </div>
 
 <?php 
-
+include 'header.php';
 include 'footer.php' ?>
  
