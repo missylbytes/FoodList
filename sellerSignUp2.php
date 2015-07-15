@@ -32,6 +32,8 @@ include 'verify2.php';
     var streetFound = 0;
     var cityFound = 0;
     var stateFound = 0;
+    var latRadians = lat * 0.01745329251;
+    var lonRadians = lon * 0.01745329251;
     geocoder.geocode({ 'latLng': latlng }, function (results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         console.log(results)
@@ -86,6 +88,8 @@ include 'verify2.php';
           document.getElementById('street').value = street_num.long_name + " " + street.long_name;
           document.getElementById('city').value = city.long_name;
           document.getElementById('state').value = state.long_name;
+          document.getElementById('lat').value = latRadians;
+          document.getElementById('lon').value = lonRadians;
         }
         else {
           alert("No results found");
@@ -132,6 +136,16 @@ include 'verify2.php';
                       <div class="right-inner-addon">
                         <i class="glyphicon glyphicon-map-marker"></i>
                         <input id="state" class="form-control input-lg" placeholder="State" type="text" name="state">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="right-inner-addon">
+                        <input id = "lat" class="form-control input-lg" type="hidden" name="lat"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="right-inner-addon">
+                        <input id = "lon" class="form-control input-lg" type="hidden" name="lon"/>
                       </div>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Continue" name="submit">
