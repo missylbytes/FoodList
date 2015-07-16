@@ -1,6 +1,8 @@
 <?php
 session_start();
-include 'header.php'; ?>
+include 'header.php';
+include 'getListings.php';
+?>
 
 <div id="mainContainer">
 	<div id="homeScreen">

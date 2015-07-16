@@ -45,13 +45,47 @@
               var lat1 = results[0].geometry.location.lat();
               var lon1 = results[0].geometry.location.lng();
    
+             
+
+   
               //Haven't figured out how to pass the javascript variables to php.
               //something like this I think
-              //$.post('file.php', {variable: lat1});
-              //$.post('file.php', {variable: lat2});
+              //$.post('browse.php', {variable: lat1});
+             // $.post('browse.php', {variable: lon1});
+             
+             //or this
+             /*  $.ajax({
+
+                type:"POST",
+                url:"browse.php",
+                data:"lat=" + lat1,
+                success:function(response)
+                {
+                  alert("latitude" + lat1");
+                },
+                error:function()
+                {
+                  alert("fail");
+                }
+              })//end ajax
+              
+             $.ajax({
+
+                type:"POST",
+                url:"browse.php",
+                data:"lon=" + lon1,
+                success:function(response)
+                {
+                  alert("longitude" + lon1");
+                },
+                error:function()
+                {
+                  alert("fail");
+                }
+              })//end ajax*/
         
               //user lat and lon for testing values came in correctly
-              //alert(lat1 + " , " + lon1);
+              alert(lat1 + " , " + lon1);
             } 
             else {
               alert("No results found");
@@ -79,6 +113,7 @@
     	<script> 
     	
     		$(function() {
+          var searchRadius = 5;
             $( "#slider" ).slider({
                range:true,
                min: 0,
@@ -91,45 +126,57 @@
                   if(ui.values[1] == 0) {
                    $( "#slidevalue")
                      .val('.5');
+                     searchRadius = .5;
                   }
                   else if(ui.values[1] == 20) {
                   $( "#slidevalue" )
                      .val('1');
+                     searchRadius = 1;
                   }
                   else if(ui.values[1] == 40)  {
                   $( "#slidevalue" )
                      .val('3');
+                     searchRadius = 3;
                   }
                   else if(ui.values[1] == 60)  {
                   $( "#slidevalue" )
                      .val('5');
+                     searchRadius = 5;
                   }
                   else if(ui.values[1] == 80)  {
                   $( "#slidevalue" )
                      .val('10');
+                     searchRadius = 10;
                   }
                   else {
                   $( "#slidevalue" )
                      .val('25');
+                     searchRadius = 30;
                   }
-                  
-               }
-           });
-           //http://stackoverflow.com/questions/17096883/sending-jquery-ui-slider-values-to-database
-           //except apparently this is used with submit button
-           //anywho, this *should* get called whenever the slider changes, and post the new value
-           /*
-           $.ajax({
+                  postSearchRadius();
+               }   
+                
+           
+            }); //End .slider({})
+         
+                function postSearchRadius(){
+                  $.ajax({
 
-              type:"POST",
-              url:"browse.php",
-              data:"searchRadius=" + $( "#slider" ).slider( "value" ),
-              success:function(response){
-                alert(voted);
-              } 
-            })
-           */
-         });
+                    type:"POST",
+                    url:"browse.php",
+                    data:"searchRadius=" + searchRadius,
+                    success:function(response)
+                    {
+                      //testing
+                      alert("searchRadius = " + searchRadius);
+                    },
+                    error:function()
+                    {
+                      alert("fail");
+                    }
+                  })//end ajax
+                }//end postSearchRadius
+            });
     	
     	</script>    
     </div>	
@@ -174,9 +221,9 @@
       <!--http://stackoverflow.com/questions/17096883/sending-jquery-ui-slider-values-to-database -->
       <?php
 
-        //$searchRadius=0;
+        $searchRadius=0;
 
-        //if(isset($_POST['searchRadius'])){$searchRadius=$_POST['searchRadius']}
+        if(isset($_POST['searchRadius'])){$searchRadius=$_POST['searchRadius']}
         
         //somehow get lat and lon
 
