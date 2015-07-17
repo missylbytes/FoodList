@@ -104,7 +104,7 @@ if($_POST)
 
 <h2 class="signupSeller">Post a meal for sale.</h2>
 
-<form action="<? $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+<form action="<?php$_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
