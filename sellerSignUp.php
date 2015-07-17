@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include 'verify.php';
 ?>
 
@@ -16,7 +16,7 @@ include 'verify.php';
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="new">
 					<br>
-            <form action="<?php$_SERVER['PHP_SELF'] ?>" method="POST">
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
               <fieldset>
                 <div class="form-group">
                   <div class="right-inner-addon">

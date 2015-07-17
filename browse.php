@@ -1,7 +1,5 @@
 <?php 
 
-if ( isset($_POST["submit2"]))
-{
   $connection = new mysqli("localhost", "avengers_USER", "COP4656");
   if ($connection->connect_errno)
     echo "Connect failed: %s\n" . $connection->connect_error;    
@@ -12,7 +10,7 @@ if ( isset($_POST["submit2"]))
 
   $query = sprintf("SELECT * FROM meal");
   $stmt = $connection->query($query);
-}
+
 ?>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
@@ -220,8 +218,7 @@ if ( isset($_POST["submit2"]))
 <div class="browseContainer">
   <div class="row">
     <?php 
-    if ( isset($_POST["submit2"]))
-    {
+
       if ($stmt)
       {
         while ($row = $stmt->fetch_assoc())
@@ -230,7 +227,7 @@ if ( isset($_POST["submit2"]))
         $stmt->close();
       }
       $connection->close();
-    }
+    
     ?>
   </div>
 </div>
