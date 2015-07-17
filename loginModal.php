@@ -1,6 +1,8 @@
-<?phpinclude 'verifyLogin.php' ?>
+<?php 
+include 'verifyLogin.php' 
+?>
 <div class="loginDiv">
-  <form action="<?php$_SERVER['PHP_SELF'] ?>" method="POST">
+  <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
     <button type="button" class="close loginDivClose" data-dismiss="modal" aria-hidden="true">×</button>
     <div class="form-group">
       <input type="text" placeholder="User Name" class="form-control" name="username">

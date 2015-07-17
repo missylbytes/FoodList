@@ -4,19 +4,19 @@
           	<div class="row">
           			
           			<div class="price">
-          				$<?phpecho $row["price"]; ?>
+          				$<?php echo $row["price"]; ?>
           			</div>
-          			<img src="uploads/<?phpecho $row["location"]; ?>" alt="">
+          			<img src="uploads/<?php echo $row["picLocation"]; ?>" alt="">
 
    				 		
    				 		<div class="galleryBrowse" >         			
           					
           					<div class="col-md-10 mealInfo">
           						<div class="mealName">
-          							<b><?phpecho $row["mealName"]; ?></b>
+          							<b><?php echo $row["mealName"]; ?></b>
           						</div>
           						<div class="ingredients col-md-10">
-          							<?phpecho $row["mealText"]; ?>
+          							<?php echo $row["mealText"]; ?>
           						</div>
           						<div class="keywords col-md-10">
           							<span class="glyphicon glyphicon-tags" style="margin-right:3px;"></span>
