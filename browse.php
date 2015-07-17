@@ -1,10 +1,25 @@
-   <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Homemade food for cheap prices!<br></h1>
-        <p><a class="btn btn-primary btn-lg howitworks" role="button">How It Works</a></p>
-      </div>
-    </div>
+<?php
+if(isset($_POST["submit"]))
+{
+  $connection = new mysqli("localhost", "avengers_USER", "COP4656");
+  if ($connection->connect_errno)
+    echo "Connect failed: %s\n" . $connection->connect_error;    
+  if ($connection->select_db("avengers_DB_mouse") === false)
+    echo "Could not select requested database";
+  
+  $query = sprintf("SELECT * FROM meal);
+  $stmt = $connection->query($query);
+  
+  }
+ 
+ ?>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h1>Homemade food for cheap prices!<br/></h1>
+    <p><a class="btn btn-primary btn-lg howitworks" role="button">How It Works</a></p>
+  </div>
+</div>
     
  	
 <div class="container optionsContainer" onload = "initialize();">
@@ -44,24 +59,18 @@
               //User's latlng values
               var lat1 = results[0].geometry.location.lat();
               var lon1 = results[0].geometry.location.lng();
-   
-             
-
-   
+    
               //Haven't figured out how to pass the javascript variables to php.
               //something like this I think
-              //$.post('browse.php', {variable: lat1});
-             // $.post('browse.php', {variable: lon1});
-             
-             //or this
-             /*  $.ajax({
+
+               $.ajax({
 
                 type:"POST",
-                url:"browse.php",
+                url:"getListings.php",
                 data:"lat=" + lat1,
                 success:function(response)
                 {
-                  alert("latitude" + lat1");
+                  alert("latitude" + lat1);
                 },
                 error:function()
                 {
@@ -76,13 +85,13 @@
                 data:"lon=" + lon1,
                 success:function(response)
                 {
-                  alert("longitude" + lon1");
+                  alert("longitude" + lon1);
                 },
                 error:function()
                 {
                   alert("fail");
                 }
-              })//end ajax*/
+              })//end ajax
         
               //user lat and lon for testing values came in correctly
               alert(lat1 + " , " + lon1);
@@ -99,19 +108,24 @@
       </script> 
 
 	<!-- Slider Message -->
-    <h2 class="foodPitch">Takeout Options Within<br>
+    <h2 class="foodPitch">Takeout Options Within<br/>
     	<div class="mileNum">    
         	 <input type="text" id="slidevalue" placeholder="5" 
-            	style="border:0; color:#9d177c;">
+            	style="border:0; color:#9d177c;"/>
     		 <div class="miles">miles</div>
     	 </div>
     </h2>
     
     <!-- Mile Range Slider -->
     <div class="row browseOptions"> 
-    	<div id="slider"></div>
+    	<div id="slider">
+        <form action="browse.php" method="POST">
+          <input type="submit" class="btn btn-primary" value="Continue" name="submit"/>
+        </form>
+      </div>
     	<script> 
     	
+      
     		$(function() {
           var searchRadius = 5;
             $( "#slider" ).slider({
@@ -156,14 +170,14 @@
                   postSearchRadius();
                }   
                 
-           
+               
             }); //End .slider({})
          
                 function postSearchRadius(){
                   $.ajax({
 
                     type:"POST",
-                    url:"browse.php",
+                    url:"getListings.php",
                     data:"searchRadius=" + searchRadius,
                     success:function(response)
                     {
@@ -176,6 +190,8 @@
                     }
                   })//end ajax
                 }//end postSearchRadius
+
+                
             });
     	
     	</script>    
@@ -203,45 +219,24 @@
     
 
     
-     <!-- John, why'd you put this here? -->
-    <?php if( isset($_SESSION["username"])) 
-    include 'navbarLoggedIn.php';	
-      else 
-    include 'navbar.php'; ?>
-  
 </div>
-    
-    
-    
-    <hr>
-    <div class="browseContainer" onload = "initialize();">	
 
-      
-      </script>
-      <!--http://stackoverflow.com/questions/17096883/sending-jquery-ui-slider-values-to-database -->
-      <?php
 
-        $searchRadius=0;
 
-        if(isset($_POST['searchRadius'])){$searchRadius=$_POST['searchRadius']}
-        
-        //somehow get lat and lon
-
-        //now do MySql here
-      ?>    
-    
-    <!-- Example row of columns -->
-     	 <div class="row">
-      		<?php include 'mealListing.php' ?>
-      		<?php include 'mealListing.php' ?>
-      	</div>
-      	 <div class="row">
-      		<?php include 'mealListing.php' ?>
-      		<?php include 'mealListing.php' ?>
-      	</div>
-      	 <div class="row">
-      		<?php include 'mealListing.php' ?>
-      		<?php include 'mealListing.php' ?>
-      	</div>
-      </div>
+    <hr/>
+<div class="browseContainer" onload = "initialize();">
+  </script>
+  <!-- Example row of columns -->
+  <div class="row">
+    <?php
+            if ($stmt)
+            {
+              while ($row = $stmt->fetch_assoc())
+                include 'mealView.php';
+              $stmt->close();
+            }
+            $connection->close();
+           ?>
+  </div>
+</div>
 
