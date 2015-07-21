@@ -54,17 +54,14 @@ include 'verify2.php';
 
   function codeLatLng(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
-    var streetFound = 0;
-    var cityFound = 0;
-    var stateFound = 0;
     var latRadians = lat * 0.01745329251;
-    var lonRadians = lon * 0.01745329251;
+    var lonRadians = lng * 0.01745329251;
     geocoder.geocode({ 'latLng': latlng }, function (results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         console.log(results)
         if (results[1]) {
 
-          //find city name
+          //find state name
           for (var i = 0; i < results[0].address_components.length; i++) {
             for (var b = 0; b < results[0].address_components[i].types.length; b++) {
               //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
@@ -76,6 +73,7 @@ include 'verify2.php';
 
             }
           }
+          //find city name
           for (var i = 0; i < results[0].address_components.length; i++) {
 
             for (var b = 0; b < results[0].address_components[i].types.length; b++) {
@@ -87,6 +85,7 @@ include 'verify2.php';
             }
 
           }
+          //find street number
           for (var i = 0; i < results[0].address_components.length; i++) {
 
             for (var b = 0; b < results[0].address_components[i].types.length; b++) {
@@ -98,6 +97,7 @@ include 'verify2.php';
             }
 
           }
+          //find street name
           for (var i = 0; i < results[0].address_components.length; i++) {
 
             for (var b = 0; b < results[0].address_components[i].types.length; b++) {
@@ -165,12 +165,12 @@ include 'verify2.php';
                     </div>
                     <div class="form-group">
                       <div class="right-inner-addon">
-                        <input id = "lat" class="form-control input-lg" type="hidden" name="lat"/>
+                        <input id = "lat" class="form-control input-lg" type="text" name="lat"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="right-inner-addon">
-                        <input id = "lon" class="form-control input-lg" type="hidden" name="lon"/>
+                        <input id = "lon" class="form-control input-lg" type="text" name="lon"/>
                       </div>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Continue" name="submit">

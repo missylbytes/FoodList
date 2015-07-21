@@ -11,10 +11,20 @@ if ( isset($_POST["submit"]))
   if ($connection->select_db("avengers_DB_mouse") === false)
     echo "Could not select requested database";
   
-  $Aquery = sprintf("UPDATE users SET street='%s', city='%s', state='%s' WHERE username='%s'", 
+  $lati = 1;
+  settype($lati, 'float');
+
+  $longi = 0;
+  settype($longi, 'float');
+
+  $lati  = $_POST["lat"];
+  $longi = $_POST["lon"];
+
+  $Aquery = sprintf("UPDATE users SET street='%s', city='%s', state='%s', latitude='%f', longitude='%f' WHERE username='%s'", 
   $connection->real_escape_string($_POST["street"]), $connection->real_escape_string($_POST["city"]), 
-  $connection->real_escape_string($_POST["state"]), $_SESSION["username"]);
+  $connection->real_escape_string($_POST["state"]), $lati, $longi,  $_SESSION["username"]);
   
+
   if( !$connection->query($Aquery))
     echo "Could not update address";
   
