@@ -6,125 +6,138 @@
 
   if ($connection->select_db("avengers_DB_mouse") === false)
     echo "Could not select requested database";
+ 
+  $lati = 1;
+  settype($lati, 'float');
+
+  $longi = 0;
+  settype($longi, 'float');
+
+  $lati  = $_POST["latF"];
+  $longi = $_POST["lonF"];
+  
+  $radSearch = $_POST["rad"];
 
 
-  $query = sprintf("SELECT * FROM meal");
+  $query = sprintf("SELECT *
+        FROM meal
+        WHERE user_id IN 
+        (SELECT id
+    FROM users
+    WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((%f - latitude)/2), 2) +
+    COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);
   $stmt = $connection->query($query);
 
 ?>
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-  <div class="container">
-    <h1>Homemade food for cheap prices!<br />
-    </h1>
-    <p><a class="btn btn-primary btn-lg howitworks" role="button">How It Works</a></p>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
 
-
-<div class="container optionsContainer" onload="initialize();">
+  </head>
 
   <!-- Start Google Maps -->
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-  <!-- Get user's lat and long -->
   <script type="text/javascript">
     var geocoder;
-
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
     }
 
     //Get the latitude and the longitude;
     function successFunction(position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-      codeLatLng(lat, lng)
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    codeLatLng(lat, lng)
     }
 
     function errorFunction() {
-      alert("Geocoder failed");
+    alert("Geocoder failed");
     }
 
     function initialize() {
-      geocoder = new google.maps.Geocoder();
+    geocoder = new google.maps.Geocoder();
     }
 
     function codeLatLng(lat, lng) {
-      var latlng = new google.maps.LatLng(lat, lng);
-      geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          console.log(results)
-          if (results[1]) {
-            //User's latlng values
-            var lat1 = results[0].geometry.location.lat();
-            var lon1 = results[0].geometry.location.lng();
+    var latlng = new google.maps.LatLng(lat, lng);
 
-            //Haven't figured out how to pass the javascript variables to php.
-            //something like this I think
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+    console.log(results)
+    if (results[1]) {
 
-            $.ajax({
+    //Fills the document
+    document.getElementById('latF').value = lat;
+    document.getElementById('lonF').value = lng;
 
-              type: "POST",
-              url: "getListings.php",
-              data: "lat=" + lat1,
-              success: function (response) {
-                alert("latitude" + lat1);
-              },
-              error: function () {
-                alert("fail");
-              }
-            })//end ajax
-
-            $.ajax({
-
-              type: "POST",
-              url: "browse.php",
-              data: "lon=" + lon1,
-              success: function (response) {
-                alert("longitude" + lon1);
-              },
-              error: function () {
-                alert("fail");
-              }
-            })//end ajax
-
-            //user lat and lon for testing values came in correctly
-            alert(lat1 + " , " + lon1);
-          }
-          else {
-            alert("No results found");
-          }
-        }
-        else {
-          alert("Geocoder failed due to: " + status);
-        }
-      });
+    alert("Latitude=" + latRadians);
     }
-      </script>
+    else {
+    alert("No results found");
+    }
+    }
+    else {
+    alert("Geocoder failed due to: " + status);
+    }
+    });
+    }
 
-  <!-- Slider Message -->
-  <h2 class="foodPitch">Takeout Options Within<br />
-    <div class="mileNum">
-      <input type="text" id="slidevalue" placeholder="5"
-        style="border: 0; color: #9d177c;" />
-      <div class="miles">miles</div>
+  </script>
+  <body onload ="initialize();">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>
+          Homemade food for cheap prices!<br />
+        </h1>
+        <p>
+          <a class="btn btn-primary btn-lg howitworks" role="button">How It Works</a>
+        </p>
+      </div>
     </div>
-  </h2>
-
-  <!-- Mile Range Slider -->
-  <div class="row browseOptions">
-    <div id="slider">
-      <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-        <input type="submit" class="btn btn-primary" value="Continue" name="submit" />
-      </form>
-    </div>
-    <script>
 
 
-      $(function () {
-        var searchRadius = 5;
-        $("#slider").slider({
+
+    <div class="container optionsContainer">
+
+      <!-- Slider Message -->
+      <h2 class="foodPitch">
+        Takeout Options Within<br />
+        <div class="mileNum">
+          <input type="text" id="slidevalue" placeholder="5"
+            style="border: 0; color: #9d177c;" />
+          <div class="miles">miles</div>
+        </div>
+      </h2>
+
+      <!-- Mile Range Slider -->
+      <div class="row browseOptions">
+        <div id="slider">
+          <form action=""<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+          <fieldset>
+            <div class="form-group">
+              <div class="right-inner-addon">
+                <input id = "latF" class="form-control input-lg" type="text" name="latF"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="right-inner-addon">
+                <input id = "lonF" class="form-control input-lg" type="text" name="lonF"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="right-inner-addon">
+                <input id = "rad" class="form-control input-lg" value ="5" type="text" name="rad"/>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Continue" name="submit">
+                  </fieldset>
+        </div>
+        <script type="text/javascript">
+
+          $(function () {
+          var searchRadius = 5;
+          $("#slider").slider({
           range: true,
           min: 0,
           max: 100,
@@ -133,91 +146,72 @@
 
           slide: function (event, ui) {
 
-            if (ui.values[1] == 0) {
-              $("#slidevalue")
-                .val('.5');
-              searchRadius = .5;
-            }
-            else if (ui.values[1] == 20) {
-              $("#slidevalue")
-                 .val('1');
-              searchRadius = 1;
-            }
-            else if (ui.values[1] == 40) {
-              $("#slidevalue")
-                 .val('3');
-              searchRadius = 3;
-            }
-            else if (ui.values[1] == 60) {
-              $("#slidevalue")
-                 .val('5');
-              searchRadius = 5;
-            }
-            else if (ui.values[1] == 80) {
-              $("#slidevalue")
-                 .val('10');
-              searchRadius = 10;
-            }
-            else {
-              $("#slidevalue")
-                 .val('25');
-              searchRadius = 30;
-            }
-            postSearchRadius();
+          if (ui.values[1] == 0) {
+          $("#slidevalue")
+          .val('.5');
+          document.getElementById('rad').value = .5;
           }
+          else if (ui.values[1] == 20) {
+          $("#slidevalue")
+          .val('1');
+          document.getElementById('rad').value = 1;
+          }
+          else if (ui.values[1] == 40) {
+          $("#slidevalue")
+          .val('3');
+          document.getElementById('rad').value = 3;
+          }
+          else if (ui.values[1] == 60) {
+          $("#slidevalue")
+          .val('5');
+          document.getElementById('rad').value = 5;
+          }
+          else if (ui.values[1] == 80) {
+          $("#slidevalue")
+          .val('10');
+          document.getElementById('rad').value = 10;
+          }
+          else {
+          $("#slidevalue")
+          .val('25');
+          document.getElementById('rad').value = 25;
+          }
+          }
+          }); //End .slider({})
+          });
 
+        </script>
+      </div>
 
-        }); //End .slider({})
+      <!-- Mile Range Key -->
+      <div class="row mileRangeTicks">
+        <p>|</p>
+        <p style="margin-left: 53px;">|</p>
+        <p style="margin-left: 53px;">|</p>
+        <p style="margin-left: 53px;">|</p>
+        <p style="margin-left: 53px;">|</p>
+        <p style="margin-left: 44px;">|</p>
+      </div>
+      <div class="row mileRange">
+        <p>
+          <b>Miles:   </b>
+        </p>
+        <p style="margin-left: 10px;">.5</p>
+        <p style="margin-left: 49px;">1</p>
+        <p style="margin-left: 48px;">3</p>
+        <p style="margin-left: 48px;">5</p>
+        <p style="margin-left: 44px;">10</p>
+        <p style="margin-left: 34px;">25</p>
+      </div>
 
-        function postSearchRadius() {
-          $.ajax({
+    </div>
 
-            type: "POST",
-            url: "getListings.php",
-            data: "searchRadius=" + searchRadius,
-            success: function (response) {
-              //testing
-              alert("searchRadius = " + searchRadius);
-            },
-            error: function () {
-              alert("fail");
-            }
-          })//end ajax
-        }//end postSearchRadius
-
-
-      });
-
-    	</script>
-  </div>
-
-  <!-- Mile Range Key -->
-  <div class="row mileRangeTicks">
-    <p>|</p>
-    <p style="margin-left: 53px;">|</p>
-    <p style="margin-left: 53px;">|</p>
-    <p style="margin-left: 53px;">|</p>
-    <p style="margin-left: 53px;">|</p>
-    <p style="margin-left: 44px;">|</p>
-  </div>
-  <div class="row mileRange">
-    <p><b>Miles:   </b></p>
-    <p style="margin-left: 10px;">.5</p>
-    <p style="margin-left: 49px;">1</p>
-    <p style="margin-left: 48px;">3</p>
-    <p style="margin-left: 48px;">5</p>
-    <p style="margin-left: 44px;">10</p>
-    <p style="margin-left: 34px;">25</p>
-  </div>
-
-</div>
-
-<hr />
-<div class="browseContainer" onload="initialize();">
-  </script>
-<div class="browseContainer">
-  <div class="row">
-    <?php 
+    <hr />
+    <div class="browseContainer">
+      </script>
+      <div class="browseContainer">
+        <div class="row">
+          <?php 
 
       if ($stmt)
       {
@@ -229,5 +223,6 @@
       $connection->close();
     
     ?>
-  </div>
-</div>
+        </div>
+      </div>
+    </body>
