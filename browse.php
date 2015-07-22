@@ -18,14 +18,29 @@
   
   $radSearch = $_POST["rad"];
 
-
+  //hard coded
   $query = sprintf("SELECT *
+        FROM meal
+        WHERE user_id IN
+        (SELECT id
+    FROM users
+    WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((32.5075 - latitude)/2), 2) +
+    COS(32.5075)  * COS(latitude) * POWER(SIN((-83.650 - longitude)/2), 2))))< 500
+    )
+    ");
+
+  //sent in values
+  /*$query = sprintf("SELECT *
         FROM meal
         WHERE user_id IN 
         (SELECT id
     FROM users
     WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((%f - latitude)/2), 2) +
-    COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);
+    COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);*/
+    
+    //all the meals
+   // $query = sprintf("SELECT * FROM meal");
+    
   $stmt = $connection->query($query);
 
 ?>
