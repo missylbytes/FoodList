@@ -35,34 +35,33 @@ include 'verify2.php';
 <script type="text/javascript">
   var geocoder;
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+  navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
   }
   //Get the latitude and the longitude;
   function successFunction(position) {
-    var lat = position.coords.latitude;
-    var lng = position.coords.longitude;
-    codeLatLng(lat, lng)
+  var lat = position.coords.latitude;
+  var lng = position.coords.longitude;
+  codeLatLng(lat, lng)
   }
 
   function errorFunction() {
-    alert("Geocoder failed");
+  alert("Geocoder failed");
   }
 
   function initialize() {
-    geocoder = new google.maps.Geocoder();
+  geocoder = new google.maps.Geocoder();
+  navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
   }
 
   function codeLatLng(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    var latRadians = lat * 0.01745329251;
-    var lonRadians = lng * 0.01745329251;
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results)
-        if (results[1]) {
+  var latlng = new google.maps.LatLng(lat, lng);
+  geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+  if (status == google.maps.GeocoderStatus.OK) {
+  console.log(results)
+  if (results[1]) {
 
-          //find state name
-          for (var i = 0; i < results[0].address_components.length; i++) {
+  //find state name
+  for (var i = 0; i < results[0].address_components.length; i++) {
             for (var b = 0; b < results[0].address_components[i].types.length; b++) {
               //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
               if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
@@ -113,8 +112,6 @@ include 'verify2.php';
           document.getElementById('street').value = street_num.long_name + " " + street.long_name;
           document.getElementById('city').value = city.long_name;
           document.getElementById('state').value = state.long_name;
-          document.getElementById('lat').value = latRadians;
-          document.getElementById('lon').value = lonRadians;
         }
         else {
           alert("No results found");
@@ -125,11 +122,11 @@ include 'verify2.php';
       }
     });
 
-
   }
 
-</script>
-<body onload="initialize(); populate();">
+  </script>
+  
+  <body onload="initialize(); populate();">
   <h2 class="signupSeller">Seller Registration!</h2>
 
   <div id="mainContainer">
@@ -161,16 +158,6 @@ include 'verify2.php';
                       <div class="right-inner-addon">
                         <i class="glyphicon glyphicon-map-marker"></i>
                         <input id="state" class="form-control input-lg" placeholder="State" type="text" name="state">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="right-inner-addon">
-                        <input id = "lat" class="form-control input-lg" type="text" name="lat"/>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="right-inner-addon">
-                        <input id = "lon" class="form-control input-lg" type="text" name="lon"/>
                       </div>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Continue" name="submit">
