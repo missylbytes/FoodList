@@ -20,27 +20,27 @@ if (isset($_POST["rad"]))
   $radSearch = $_POST["rad"];
 
   //hard coded
-  $query = sprintf("SELECT *
-        FROM meal
-        WHERE user_id IN
-        (SELECT id
-    FROM users
-    WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((32.5075 - latitude)/2), 2) +
-    COS(32.5075)  * COS(latitude) * POWER(SIN((-83.650 - longitude)/2), 2)))) < 500
-    )
-    ");
+  //$query = sprintf("SELECT *
+  //      FROM meal
+  //      WHERE user_id IN
+  //      (SELECT id
+  //  FROM users
+  //  WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((0.4898993300822939 - latitude)/2), 2) +
+  //  COS(0.4898993300822939)  * COS(latitude) * POWER(SIN((1.43761320118174 - longitude)/2), 2)))) < %d), 50
+  //  "
+  //  );
 
   //sent in values
-  /*$query = sprintf("SELECT *
+  $query = sprintf("SELECT *
   FROM meal
   WHERE user_id IN 
   (SELECT id
   FROM users
   WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((%f - latitude)/2), 2) +
-  COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);*/
+  COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);
   
   //all the meals
-  // $query = sprintf("SELECT * FROM meal");
+   //$query = sprintf("SELECT * FROM meal");
   
   $stmt = $conn->query($query);
 
@@ -81,8 +81,8 @@ if (isset($_POST["rad"]))
         if (results[1]) {
 
           //Fills the document
-          document.getElementById('latF').value = lat;
-          document.getElementById('lonF').value = lng;
+          document.getElementById('latF').value = lat * 3.14159265359 / 180;
+          document.getElementById('lonF').value = lng * -3.14159265359 / 180;
 
           alert("Latitude=" + latRadians);
         }
@@ -224,6 +224,8 @@ if (isset($_POST["rad"]))
     </script>
       <div class="browseContainer">
         <div class="row">
+
+        <br /><br /><br /><br /><br /><br />
           <?php 
 
           if ($stmt)
