@@ -29,20 +29,20 @@ $query = sprintf("SELECT * FROM users WHERE username='%s'",
 <br/>
 <br/><br/><br/>
 <h1>My Account Settings</h1>
-<form action="<?php$_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
 User Name: <br />
-<?phpecho $result['username'] ?>
+<?php echo $result['username'] ?>
 <br />
 Unable to edit username.
 </form>
 
-<form action="<?php$_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
 E-mail: <br />
-<?phpecho $result['email'] ?><br />
+<?php echo $result['email'] ?><br />
 <input type="submit" value="Edit" name="editEmail">
 </form>
 
-<form action="<?php$_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post"><legend></legend>
 Password:<br />
 *********<br />
 <input type="submit" value="Edit" name="editPassword">
@@ -50,7 +50,7 @@ Password:<br />
 
 <form action="sellerSignUp2.php" method="post"><legend></legend>
 Address: <br />
-<?phpecho $result['street']  . "<br />"; 
+<?php echo $result['street']  . "<br />"; 
   echo $result['city']  . "<br />"; 
   echo $result['state']  . "<br />"; ?><br />
   <input type="submit" value="Edit" name="editAddress">

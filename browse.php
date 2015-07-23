@@ -26,7 +26,7 @@ if (isset($_POST["rad"]))
         (SELECT id
     FROM users
     WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((32.5075 - latitude)/2), 2) +
-    COS(32.5075)  * COS(latitude) * POWER(SIN((-83.650 - longitude)/2), 2))))< 500
+    COS(32.5075)  * COS(latitude) * POWER(SIN((-83.650 - longitude)/2), 2)))) < 500
     )
     ");
 
