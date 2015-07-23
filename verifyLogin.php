@@ -24,7 +24,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
             
     if ($stmt->num_rows() == 1)
     {  
-      $stmt->close();
+      $stmt->close();      
  
       setcookie("username", $_POST["username"], time() + 7 * 24 * 60 * 60);  
       $_SESSION["username"] = $connection->real_escape_string($_POST["username"]);
@@ -34,8 +34,6 @@ if (isset($_POST["username"]) && isset($_POST["password"]))
         $connection->close();  
         exit();
     }
-    //else
-      //echo "<font color='red'>Invalid User Name and/or Password! </font>";      
   }  
 } 
 ?>

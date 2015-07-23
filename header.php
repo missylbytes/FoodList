@@ -34,6 +34,4 @@ else
   <link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Jura:600' rel='stylesheet' type='text/css'>
 </head>
 
-
 <body>
-  <!-- the navbar changes if user is logged in -->
