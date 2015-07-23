@@ -1,9 +1,7 @@
 <?php 
 $stmt = false;
-//if($_SERVER['REQUEST_METHOD'] == "POST")
 if (isset($_POST["rad"]))
 {
-  echo "<br /><br />Got in here <br /><br /><br /><br />";
   $conn = new mysqli("localhost", "avengers_USER", "COP4656");
   if ($conn->connect_errno)
     echo "Connect failed: %s\n" . $conn->connect_error;    
@@ -47,11 +45,7 @@ if (isset($_POST["rad"]))
   $stmt = $conn->query($query);
 
 }
-else
-{
-  echo "<br /><br />Not set! <br /><br /><br /><br />";
-  //var_dump($_POST);
-}
+
 ?>
 
 
