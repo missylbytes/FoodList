@@ -120,17 +120,17 @@ if (isset($_POST["rad"]))
           <fieldset>
             <div class="form-group">
               <div class="right-inner-addon">
-                <input id="latF" class="form-control input-lg" type="text" name="latF" />
+                <input id="latF" class="form-control input-lg" type="hidden" name="latF" />
               </div>
             </div>
             <div class="form-group">
               <div class="right-inner-addon">
-                <input id="lonF" class="form-control input-lg" type="text" name="lonF" />
+                <input id="lonF" class="form-control input-lg" type="hidden" name="lonF" />
               </div>
             </div>
             <div class="form-group">
               <div class="right-inner-addon">
-                <input id="rad" class="form-control input-lg" value="5" type="text" name="rad" />
+                <input id="rad" class="form-control input-lg" value="5" type="hidden" name="rad" />
               </div>
             </div>
             <input type="submit" class="btn btn-primary" value="Continue" name="submit">
