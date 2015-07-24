@@ -19,28 +19,19 @@ if (isset($_POST["rad"]))
   $longi = $_POST["lonF"];  
   $radSearch = $_POST["rad"];
 
-  //hard coded
-  //$query = sprintf("SELECT *
-  //      FROM meal
-  //      WHERE user_id IN
-  //      (SELECT id
-  //  FROM users
-  //  WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((0.4898993300822939 - latitude)/2), 2) +
-  //  COS(0.4898993300822939)  * COS(latitude) * POWER(SIN((1.43761320118174 - longitude)/2), 2)))) < %d), 50
-  //  "
-  //  );
-
-  //sent in values
-  $query = sprintf("SELECT *
-  FROM meal
-  WHERE user_id IN 
-  (SELECT id
-  FROM users
-  WHERE (3956 * 2 * ASIN(SQRT( POWER(SIN((%f - latitude)/2), 2) +
-  COS(%f)  * COS(latitude) * POWER(SIN((%f - longitude)/2), 2)))) < %d)", $lati, $lati, $longi, $radSearch);
+  //sent in values 
+ $query = sprintf("SELECT *
+	                    FROM 
+	                    (SELECT id, (3956 * 2 * ASIN(SQRT( POWER(SIN((ABS(%f) - latitude)/2), 2) +
+    	                COS(ABS(%f))  * COS(latitude) * POWER(SIN((ABS(%f) - longitude)/2), 2)))) as distance
+	                    FROM users
+	                    HAVING  distance < %f)dist
+	                    JOIN meal
+	                    HAVING user_id = dist.id
+                      ORDER BY distance", $lati, $lati, $longi, $radSearch);
   
   //all the meals
-   //$query = sprintf("SELECT * FROM meal");
+  //$query = sprintf("SELECT * FROM meal");
   
   $stmt = $conn->query($query);
 
@@ -149,7 +140,6 @@ if (isset($_POST["rad"]))
       <script type="text/javascript">
 
         $(function () {
-          var searchRadius = 5;
           $("#slider").slider({
             range: true,
             min: 0,
