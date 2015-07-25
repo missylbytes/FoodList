@@ -11,7 +11,7 @@ A "Craigslist for Food". Group project for CS class		</description>
 email="melisagriff@gmail.com">
 Melisa Griffin
 </author>
-</widget>
+
 <gap:platform name="android" />
 <preference name="android-installLocation" value="auto" />
 <preference name="BackgroundColor" value="0xff000000 "/>
@@ -32,3 +32,4 @@ Melisa Griffin
 <gap:plugin name="org.apache.cordova.inappbrowser"  />
 <gap:plugin name="org.apache.cordova.network-information"  />
 <access origin="*" subdomains="true" />
+</widget>
