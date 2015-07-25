@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id        = "com.mealmouse"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+	id        = "com.avengersGroup.mealmouse"
 	versionCode="1"
 	version   = "1.0">
   <name>MealMouse</name>
@@ -11,7 +12,9 @@ A "Craigslist for Food". Group project for CS class		</description>
 email="melisagriff@gmail.com">
 Melisa Griffin
 </author>
-
+<gap:config-file platform="android" parent="/manifest">
+     <application android:debuggable="true" />
+</gap:config-file>
 <gap:platform name="android" />
 <preference name="android-installLocation" value="auto" />
 <preference name="BackgroundColor" value="0xff000000 "/>
