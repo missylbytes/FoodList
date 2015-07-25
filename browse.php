@@ -22,8 +22,8 @@ if (isset($_POST["rad"]))
   //sent in values 
  $query = sprintf("SELECT *
 	                    FROM 
-	                    (SELECT id, (3956 * 2 * ASIN(SQRT( POWER(SIN((ABS(%f) - latitude)/2), 2) +
-    	                COS(ABS(%f))  * COS(latitude) * POWER(SIN((ABS(%f) - longitude)/2), 2)))) as distance
+	                    (SELECT id, (3956 * 2 * ASIN(SQRT( POWER(SIN((ABS(%f) - ABS(latitude))/2), 2) +
+    	                COS(ABS(%f))  * COS(ABS(latitude)) * POWER(SIN((ABS(%f) - ABS(longitude))/2), 2)))) as distance
 	                    FROM users
 	                    HAVING  distance < %f)dist
 	                    JOIN meal
