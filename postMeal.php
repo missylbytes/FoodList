@@ -104,52 +104,53 @@ if($_POST)
 
 <h2 class="signupSeller">Post a meal for sale.</h2>
 
-<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+<form action=""
+  <?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <br>
-        <!-- Nav tabs -->
-        <div class="tab-content">
-          <div class="tab-pane fade in active" id="new">
-            <br>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <label>Name of Meal:</label>
-                <i class="glyphicon glyphicon-apple" style="margin-top: 20px;"></i>
-                <input class="form-control input-lg" placeholder="ex: Spaghetti Bolognese" type="text" name="mealTF">
+        <br/>
+          <!-- Nav tabs -->
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="new">
+              <br/>
+                <div class="form-group">
+                  <div class="right-inner-addon">
+                    <label>Name of Meal:</label>
+                    <i class="glyphicon glyphicon-apple" style="margin-top: 20px;"></i>
+                    <input class="form-control input-lg" placeholder="ex: Spaghetti Bolognese" type="text" name="mealTF"/>
               </div>
+                </div>
+                <div class="form-group">
+                  <div class="right-inner-addon">
+                    <label>Ingredients:</label>
+                    <i class="glyphicon glyphicon-cutlery" style="margin-top: 20px;"></i>
+                    <textarea class="form-control text" rows="4" placeholder="ex: whole wheat noodles, organic tomatoes, cheddar cheese, grass-fed ground beef... " type="text" name="ingredientsTF"></textarea>
+                  </div>
+                </div>
+                <div class="galleryImage">
+                  <label>Picture of Meal:</label>
+                  <input class="form-control" type="file" name="fileToUpload" id="fileToUpload"/>
             </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <label>Ingredients:</label>
-                <i class="glyphicon glyphicon-cutlery" style="margin-top: 20px;"></i>
-                <textarea class="form-control text" rows="4" placeholder="ex: whole wheat noodles, organic tomatoes, cheddar cheese, grass-fed ground beef... " type="text" name="ingredientsTF"></textarea>
-              </div>
-            </div>
-            <div class="galleryImage">
-              <label>Picture of Meal:</label>
-              <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
-            </div>
-            <div class="form-group" style="margin-top: 10px;">
-              <div class="right-inner-addon">
+                <div class="form-group" style="margin-top: 10px;">
+                  <div class="right-inner-addon">
 
-                <label>Price:</label>
-                <div class="radio" style="margin-top: -5px;">
-                  <label>
-                    <input type="radio" name="optradio" value='3'>$3</label>
-                  <label>
-                    <input type="radio" name="optradio" value='5'>$5</label>
-                  <label>
-                    <input type="radio" name="optradio" value='7'>$7</label>
-                  <label>
-                    <input type="radio" name="optradio" value='10' checked="checked">$10</label>
+                    <label>Price:</label>
+                    <div class="radio" style="margin-top: -5px;">
+                      <label>
+                        <input type="radio" name="optradio" value='3'/>$3</label>
+                      <label>
+                        <input type="radio" name="optradio" value='5'/>$5</label>
+                      <label>
+                        <input type="radio" name="optradio" value='7'/>$7</label>
+                      <label>
+                        <input type="radio" name="optradio" value='10' checked="checked"/>$10</label>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 
@@ -160,69 +161,128 @@ if($_POST)
     <div class="checkbox">
       <div class="col-md-1"></div>
 
-      <div class="col-md-2">
-        <input type="checkbox" name="readyToEat" value="readyToEat">
-        Ready-to-Eat<br>
-        <input type="checkbox" name="readyToEat" value="frozen">
-        Cold or Frozen<br>
-        <input type="checkbox" name="readyToEat" value="american">
-        American (Traditional)<br>
-        <input type="checkbox" name="readyToEat" value="bbq">
-        Barbeque<br>
+      <div class="col-md-2" style ="margin-left: 10px;">
+        <label>
+          <input type="checkbox" name="readyToEat" value="readyToEat"/>
+          Ready-to-Eat
+        </label>
+        <br/>
+          <label>
+            <input type="checkbox" name="readyToEat" value="frozen"/>
+              Cold or Frozen
+        </label>
+        <br/>
+          <label>
+            <input type="checkbox" name="readyToEat" value="american"/>
+              American (Traditional)             
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="bbq"/>
+          Barbeque          
+        </label>
+        <br/>
       </div>
 
-      <div class="col-md-2">
-        <input type="checkbox" name="readyToEat" value="asian">
-        Asian<br>
-        <input type="checkbox" name="readyToEat" value="indian">
-        Indian<br>
-        <input type="checkbox" name="readyToEat" value="Curry">
-        Curry<br>
-        <input type="checkbox" name="readyToEat" value="middleEastern">
-        Middle Eastern<br>
+      <div class="col-md-2" style ="margin-left: 10px;">
+        <label>
+          <input type="checkbox" name="readyToEat" value="asian"/>
+            Asian
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="indian"/>
+            Indian
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="Curry"/>
+            Curry
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="middleEastern"/>
+            Middle Eastern<br/>
+        </label>
       </div>
 
-      <div class="col-md-2">
-        <input type="checkbox" name="readyToEat" value="french">
-        French<br>
-        <input type="checkbox" name="readyToEat" value="mexican">
-        Latin / Mexican<br>
-        <input type="checkbox" name="readyToEat" value="italian">
-        Italian<br>
-        <input type="checkbox" name="readyToEat" value="sandwich">
-        Sandwich<br>
+      <div class="col-md-2" style ="margin-left: 10px;">
+        <label>
+          <input type="checkbox" name="readyToEat" value="french"/>
+            French
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="mexican"/>
+            Latin / Mexican
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="italian"/>
+            Italian
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="sandwich"/>
+            Sandwich
+        </label>
+        <br/>
       </div>
 
-      <div class="col-md-2">
-        <input type="checkbox" name="readyToEat" value="vegetarian">
-        Vegetarian<br>
-        <input type="checkbox" name="readyToEat" value="glutenFree">
-        Gluten-Free<br>
-        <input type="checkbox" name="readyToEat" value="organic">
-        Organic<br>
-        <input type="checkbox" name="readyToEat" value="vegan">
-        Vegan<br>
+      <div class="col-md-2" style ="margin-left: 10px;">
+        <label>
+          <input type="checkbox" name="readyToEat" value="vegetarian"/>
+            Vegetarian
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="glutenFree"/>
+            Gluten-Free
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="organic"/>
+            Organic
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="vegan"/>
+            Vegan
+        </label>
+        <br/>
       </div>
 
-      <div class="col-md-2">
-        <input type="checkbox" name="readyToEat" value="baked">
-        Baked Goods<br>
-        <input type="checkbox" name="readyToEat" value="dessert">
-        Dessert<br>
-        <input type="checkbox" name="readyToEat" value="salad">
-        Salad<br>
-        <input type="checkbox" name="readyToEat" value="soup">
-        Soup<br>
+      <div class="col-md-2" style ="margin-left: 10px;">
+        <label>
+          <input type="checkbox" name="readyToEat" value="baked"/>
+            Baked Goods
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="dessert"/>
+            Dessert
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="salad"/>
+            Salad
+        </label>
+        <br/>
+        <label>
+          <input type="checkbox" name="readyToEat" value="soup"/>
+            Soup
+        </label>
+        <br/>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row text-center">
     <div class="col-md-1"></div>
     <div class="col-md-4">
     </div>
-    <div class="col-md-3" style="padding-top: 20px;">
-      <input type="submit" class="btn btn-primary" value="FINISHED" name="submit">
+    <div class="col-md-2" style="padding-top: 20px;">
+      <input type="submit" class="btn btn-primary" value="FINISHED" name="submit"/>
     </div>
   </div>
 
