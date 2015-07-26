@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns = "http://www.w3.org/ns/widgets"
-	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id        = "com.mealmouse"
-	versionCode="1"
-	version   = "1.0">
-  <name>MealMouse</name>
-  <description>
-A "Craigslist for Food". Group project for CS class		</description>
-<gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+<widget 
 <icon src="res/icon/android/mealMouseLogo-ldpi.png" gap:platform="android" gap:density="ldpi" />
 <icon src="res/icon/android/mealMouseLogo-mdpi.png" gap:platform="android" gap:density="mdpi" />
 <icon src="res/icon/android/mealMouseLogo-xhdpi.png" gap:platform="android" gap:density="hdpi" />
