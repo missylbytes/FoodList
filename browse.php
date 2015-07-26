@@ -116,26 +116,7 @@ if (isset($_POST["rad"]))
     <!-- Mile Range Slider -->
     <div class="row browseOptions">
       <div id="slider">
-        <form action="index.php" method="POST">
-          <fieldset>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <input id="latF" class="form-control input-lg" type="hidden" name="latF" />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <input id="lonF" class="form-control input-lg" type="hidden" name="lonF" />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <input id="rad" class="form-control input-lg" value="5" type="hidden" name="rad" />
-              </div>
-            </div>
-            <input type="submit" class="btn btn-primary" value="Continue" name="submit">
-          </fieldset>
-        </form>
+        
       </div>
       <script type="text/javascript">
 
@@ -184,7 +165,10 @@ if (isset($_POST["rad"]))
         });
 
       </script>
+      
     </div>
+
+    
 
     <!-- Mile Range Key -->
     <div class="row mileRangeTicks">
@@ -207,6 +191,28 @@ if (isset($_POST["rad"]))
       <p style="margin-left: 34px;">25</p>
     </div>
 
+    <div style="text-align: center;">
+      <form action="index.php" method="POST">
+        <fieldset>
+          <div class="form-group">
+            <div class="right-inner-addon">
+              <input id="latF" class="form-control input-lg" type="hidden" name="latF" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="right-inner-addon">
+              <input id="lonF" class="form-control input-lg" type="hidden" name="lonF" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="right-inner-addon">
+              <input id="rad" class="form-control input-lg" value="5" type="hidden" name="rad" />
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary" value="Continue" name="submit">
+          </fieldset>
+      </form>
+    </div>
   </div>
 
   <hr />
