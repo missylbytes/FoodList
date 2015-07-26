@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
 	xmlns:gap = "http://phonegap.com/ns/1.0"
-	id        = "com.avengersGroup.mealmouse"
+	id        = "com.phonegap.mealmouse"
 	versionCode="1"
 	version   = "1.0">
   <name>MealMouse</name>
@@ -13,7 +13,6 @@ Melisa Griffin
 </author>
 <gap:platform name="android" />
 <preference name="android-installLocation" value="auto" />
-<preference name="BackgroundColor" value="0xff000000 "/>
 <icon src="res/icon/android/mealMouseLogo-ldpi.png" gap:platform="android" gap:density="ldpi" />
 <icon src="res/icon/android/mealMouseLogo-mdpi.png" gap:platform="android" gap:density="mdpi" />
 <icon src="res/icon/android/mealMouseLogo-xhdpi.png" gap:platform="android" gap:density="hdpi" />
@@ -29,6 +28,5 @@ Melisa Griffin
 <gap:plugin name="org.apache.cordova.network-information"  />
 <gap:plugin name="org.apache.cordova.console"  />
 <gap:plugin name="org.apache.cordova.inappbrowser"  />
-<gap:plugin name="org.apache.cordova.network-information"  />
 <access origin="*" subdomains="true" />
 </widget>
